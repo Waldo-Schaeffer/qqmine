@@ -1,0 +1,49 @@
+200422 写一个爬虫抓取直播弹幕，写入数据库，并从数据库中读取最后50条显示在web页面中。爬虫使用python，抓取后直接写入mysql，web后端用php读数据库，然后以bootstrap以表格显示在前端。
+
+
+
+1 完善py爬虫并写入mysql
+    1 处理抓取到的json数据
+        1 使用在线json格式化：https://www.bejson.com/
+        2 在线时间戳转化：https://tool.chinaz.com/tools/unixtime.aspx
+        3 抓取到的时间戳"tm"字段可能要去掉后三位数
+        4 正则： '在 {0,1}(.*?)[ ,的]*直播间.*?出 (.*?)[ ]*[x,×]([0-9]+)'
+    2 创建mysql数据库，表，python连接mysql
+        1 bash 登录mysql(密码toor) ：mysql -h 127.0.0.1 -u root -p
+        2 建数据库covcode： create database covcode;
+        3 建表：(查看表结构命令：desc table_name)
+        +-------------+--------------+ +-------------+--------------+  
+        |  sub_table  分表记录表结构 | |     data   数据表结构      |
+        +-------------+--------------+ +-------------+--------------+
+        | Field       | Type         | | Field       | Type         |
+        +-------------+--------------+ +-------------+--------------+
+        | table_id    | int(11)      | | key_id      | int(11)      |
+        | create_time | timestamp    | | create_time | timestamp    |
+        | update_time | timestamp    | | update_time | timestamp    |
+        | table_name  | varchar(255) | | gift_time   | varchar(255) |
+        +-------------+--------------+ | gift_author | varchar(255) |
+                                       | gift_name   | varchar(255) |
+                                       | gift_number | int(11)      |
+                                       | gift_color  | varchar(255) |
+                                       | gift_master | varchar(255) |
+                                       +-------------+--------------+
+
+    3 python写入mysqll
+2 php读取数据库数据
+    1 需要开启php的mysqli扩展（linux）：https://rmb122.com/2018/11/30/%E5%9C%A8%20ArchLinux%20%E4%B8%8A%E5%AE%89%E8%A3%85%20LAMP/
+    2 连接数据库:$result = mysqli_connect($database_host, $database_user, $database_pass, $database_name);
+    3 查询$query_result = mysqli_query($handle, 'select * from sub_table');
+      使用mysqli_fetch_array($query_result)获取查询的数据，返回一个二维数组[数据n][字段]
+3 结合bootstrap在前端显示数据
+    1 页面每10秒刷新一次，在footer.php的js代码中设置
+4 防注入
+
+未完成：
+1 数据去重
+2 考虑一次出多个礼物的情况
+3 网页显示的数据统计
+4 python脚本添加日志模块
+5 防sqli
+
+
+php -S 0.0.0.0:9999
