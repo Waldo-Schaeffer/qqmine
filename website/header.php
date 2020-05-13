@@ -8,7 +8,7 @@ function advertisement () {
 					<p style='font-size:18px;color:red'>
 					龙龙微信: YunLong525626<br>
 					秀秀微信: liangxinxiu521<br>
-					广告位招租QQ: 1356565637</p>  
+					<!--挖矿、梦幻盒子数据定制，-->广告位招租联系QQ: 1356565637</p>  
 					<p style='font-size:32px;color:#FF00FF'>
 					<b>64-66折</b>回收礼物头条等<br>		
 					</p>
@@ -48,12 +48,13 @@ function noadvertisement () {
 				
         ";
 }
+
 ?>
 <html http-equiv="Content-Type" content="text/html; charset=utf-8">
 <head>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
-    <title>企鹅挖矿大数据4.9.6</title>
+    <title>企鹅挖矿大数据5.0</title>
 
     <style type="text/css">
     
@@ -74,5 +75,6 @@ function noadvertisement () {
 <!--4.9版本回调了4.8.6版本显示黄金战机引发的崩盘-->
 <!--4.9.2版本增加了专门查看梦幻盒子（迷迭香、摩天轮）的页面-->
 <!--4.9.6版本增加了专门查看皇家系列、月球的页面-->
+<!--5.0版本增加了专门查看臻品（独角兽、狸猫、神碎片）的页面。添加了针对指定直播间采集迷迭香数据、挖矿数据的页面，可以定制售卖。统一了广告位的数据，今后广告位可以统一修改。彻底修复PK引发的崩盘问题-->
 <body>
 

@@ -6,7 +6,7 @@ function myrefresh()
 {
    window.location.reload();
 }
-setTimeout('myrefresh()',4000); //指定10000毫秒刷新一次，1秒等于1000毫秒
+setTimeout('myrefresh()',4000); //指定4000毫秒刷新一次，1秒等于1000毫秒
 //setInterval('acg.innerHTML=new Date().toLocaleTimeString("chinese",{hour12:false})',1000);
 //以下两个函数从服务器获取时间并以js动态显示在网页中
 function get_obj(time){  
@@ -23,7 +23,8 @@ function getTime(){
 	ts+=1000;  
 }  
 getTime(); 
-
+//前端控制台广告位
+console.log("%c\n        ███████╗ ██████╗  █████╗ ███╗   ███╗███████╗\n        ██╔════╝██╔════╝ ██╔══██╗████╗ ████║██╔════╝\n        █████╗  ██║  ███╗███████║██╔████╔██║█████╗  \n        ██╔══╝  ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝  \n        ███████╗╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗\n        ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝\n        ","color:#E6B035","\n        企鹅电竞(egame.qq.com) 招聘前端工程师 https://www.lagou.com/jobs/3745500.html");
 </script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
