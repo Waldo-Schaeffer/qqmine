@@ -49,12 +49,46 @@ function noadvertisement () {
         ";
 }
 
+#该函数用于统一根据礼物显示不同颜色
+function color_switch ($gift_name_switch, $default) {
+	switch ($gift_name_switch) {
+		case "夺宝战机":
+			return "#a0b8f8";
+		case "独角兽（30天）":
+			return "#00c675";
+		case "头条卡":
+			return "#6fc675";
+		case "私奔到月球":
+			return "#fad8e8";
+		case "皇家招财猫":
+			return "#243ed6";
+		case "皇家钞票枪":
+			return "#dfb11e";
+		case "神碎片":
+			return "#243edd";	
+		case "超级火箭":
+			return "#ffff00";
+		case "暗夜狸猫（30天）":
+			return "#00403e";	
+		case "皇家同花顺":
+			return "#ff0000";	
+		case "盛宴黑桃A":
+			return "#444444";	
+		case "梦幻摩天轮":
+			return "#a0b8f8";	
+		case "BUFF梦幻摩天轮":
+			return "#a0b8f8";	
+		default:
+			return $default;	
+	}
+}
+
 ?>
 <html http-equiv="Content-Type" content="text/html; charset=utf-8">
 <head>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
-    <title>企鹅挖矿大数据5.0</title>
+    <title>企鹅挖矿大数据5.1</title>
 
     <style type="text/css">
     
@@ -76,5 +110,6 @@ function noadvertisement () {
 <!--4.9.2版本增加了专门查看梦幻盒子（迷迭香、摩天轮）的页面-->
 <!--4.9.6版本增加了专门查看皇家系列、月球的页面-->
 <!--5.0版本增加了专门查看臻品（独角兽、狸猫、神碎片）的页面。添加了针对指定直播间采集迷迭香数据、挖矿数据的页面，可以定制售卖。统一了广告位的数据，今后广告位可以统一修改。彻底修复PK引发的崩盘问题-->
+<!--5.1版本增加了新的礼物盛宴黑桃A，统一了不同页面的礼物颜色-->
 <body>
 

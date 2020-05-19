@@ -22,18 +22,23 @@ function db_connect(){
     return $result;
 }
 
+
 # 该函数用于屏蔽指定礼物
 function block_gift ($data) {
-    if ($data == '梦幻迷迭香')
-        return true;
-    if ($data == '梦幻摩天轮')
-        return true;
-	if ($data == 'BUFF梦幻迷迭香')
-        return true;
-    if ($data == 'BUFF梦幻摩天轮')
-        return true;
+    if ($data == '皇家招财猫')
+        return false;
+    if ($data == '皇家钞票枪')
+        return false;
+	if ($data == '皇家同花顺')
+        return false;
+    if ($data == '风铃禾梦')
+        return false;
+	if ($data == '盛宴黑桃A')
+        return false;
+	if ($data == '私奔到月球')
+        return false;
     # 把要屏蔽的礼物用if筛选掉
-    return false;
+    return true;
 }
 
 # 输出表头
@@ -94,7 +99,7 @@ function html_center () {
     # 循环输出表格内容
     $number = 0;
     # flag控制输出条数，不从数据库限制是因为有礼物黑名单
-    $flag = 50;
+    $flag = 100;
     while ($data = mysqli_fetch_array($query_result)) {
         if ( block_gift($data[2]) )
             continue;

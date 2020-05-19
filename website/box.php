@@ -36,38 +36,6 @@ function block_gift ($data) {
     return true;
 }
 
-#该函数用于根据礼物显示不同颜色
-function color_switch ($gift_name_switch, $default) {
-	switch ($gift_name_switch) {
-		case "夺宝战机":
-			return "#a0b8f8";
-		case "独角兽（30天）":
-			return "#00c675";
-		case "头条卡":
-			return "#6fc675";
-		case "私奔到月球":
-			return "#fad8e8";
-		case "皇家招财猫":
-			return "#df9826";
-		case "皇家钞票枪":
-			return "#dfb11e";
-		case "神碎片":
-			return "#243edd";	
-		case "超级火箭":
-			return "#ffff00";
-		case "暗夜狸猫（30天）":
-			return "#00403e";	
-		case "皇家同花顺":
-			return "#ff0000";		
-		case "梦幻摩天轮":
-			return "#a0b8f8";	
-		case "BUFF梦幻摩天轮":
-			return "#a0b8f8";	
-		default:
-			return $default;	
-	}
-}
-
 # 输出表头
 function html_header () {
     echo"    <div class='container'>
