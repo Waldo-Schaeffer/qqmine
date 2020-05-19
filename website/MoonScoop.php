@@ -1,3 +1,4 @@
+<!--此页面用于查看开心矿工爆出的私奔到月球-->
 <?php
 
 session_start();
@@ -98,7 +99,7 @@ function html_center () {
 		if ($data[5] == '与')				# 无直播间时正则抓到的直播间名为 与 ，此时替换为 [主页活动页面]
 			$data[5] = '[主页活动页面]';
         echo "
-                <tr bgcolor='" . color_switch($data[2],$data[4]) . "'>
+                <tr bgcolor='" . color_switch($data[2],$data[4]) . "'  style='color:" . color_font($data[2]) . "'>
                   <td>" . date('Y-m-d H:i:s', substr($data[0], 0,10)+8*60*60) . "</td>
                   <td>$data[1]</td>
                   <td>$data[2]</td>

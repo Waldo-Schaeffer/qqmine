@@ -10,7 +10,7 @@ function advertisement () {
 					秀秀微信: liangxinxiu521<br>
 					<!--挖矿、梦幻盒子数据定制，-->广告位招租联系QQ: 1356565637</p>  
 					<p style='font-size:32px;color:#FF00FF'>
-					<b>64-66折</b>回收礼物头条等<br>		
+					<b>66-67折</b>回收礼物头条等<br>		
 					</p>
 					<p style='font-size:18px;color:red'>
 					欢迎各大公会前来合作<br>
@@ -49,7 +49,7 @@ function noadvertisement () {
         ";
 }
 
-#该函数用于统一根据礼物显示不同颜色
+#该函数用于统一根据礼物显示不同的背景颜色
 function color_switch ($gift_name_switch, $default) {
 	switch ($gift_name_switch) {
 		case "夺宝战机":
@@ -73,7 +73,7 @@ function color_switch ($gift_name_switch, $default) {
 		case "皇家同花顺":
 			return "#ff0000";	
 		case "盛宴黑桃A":
-			return "#444444";	
+			return "#000000";	
 		case "梦幻摩天轮":
 			return "#a0b8f8";	
 		case "BUFF梦幻摩天轮":
@@ -83,12 +83,21 @@ function color_switch ($gift_name_switch, $default) {
 	}
 }
 
+#该函数用于统一根据礼物显示不同的字体颜色
+function color_font ($gift_name_switch) {
+	switch ($gift_name_switch) {
+		case "盛宴黑桃A":
+			return "#ffffff";	
+		default:
+			return "#000000";	
+	}
+}
 ?>
 <html http-equiv="Content-Type" content="text/html; charset=utf-8">
 <head>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
-    <title>企鹅挖矿大数据5.1</title>
+    <title>企鹅挖矿大数据5.1.2</title>
 
     <style type="text/css">
     
@@ -111,5 +120,7 @@ function color_switch ($gift_name_switch, $default) {
 <!--4.9.6版本增加了专门查看皇家系列、月球的页面-->
 <!--5.0版本增加了专门查看臻品（独角兽、狸猫、神碎片）的页面。添加了针对指定直播间采集迷迭香数据、挖矿数据的页面，可以定制售卖。统一了广告位的数据，今后广告位可以统一修改。彻底修复PK引发的崩盘问题-->
 <!--5.1版本增加了新的礼物盛宴黑桃A，统一了不同页面的礼物颜色-->
+<!--5.1版本后，区分出定制版专门维护-->
+<!--5.1.2版本新增了针对不同的礼物显示不同的字体颜色-->
 <body>
 
