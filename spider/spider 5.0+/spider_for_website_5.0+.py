@@ -69,7 +69,7 @@ def db_connect():
         conn.commit()
     return cursor
 
-# 数据插入函数，达到5万条数据自动分表
+# 数据插入函数，达到4万条数据自动分表
 def db_operation(gift_data, temp_str):
     # time.sleep(200)
     # 先检测是否已断开mysql连接，断开则重连
@@ -118,7 +118,7 @@ def db_operation(gift_data, temp_str):
                     `gift_color` VARCHAR(255) NOT NULL,
                     `gift_master` VARCHAR(255) NOT NULL,
                     primary key(key_id)
-                    )ENGINE=InnoDB AUTO_INCREMENT=""" + str(key_id+1) + """ DEFAULT CHARSET=utf8;"""
+                    )ENGINE=InnoDB DEFAULT CHARSET=utf8;"""
             cursor.execute(sql_data_table)
             #INSERT INTO `data_2`(`create_time`, `update_time`, `gift_time`, `gift_author`, `gift_name`, `gift_number`, `gift_color`, `gift_master`) select `create_time`, `update_time`, `gift_time`, `gift_author`, `gift_name`, `gift_number`, `gift_color`, `gift_master` from `data_1` where `key_id` >=45000
             #UPDATE `sub_table` SET `table_id`=2,`create_time`=now(),`update_time`=now(),`table_name`='data_2' 
