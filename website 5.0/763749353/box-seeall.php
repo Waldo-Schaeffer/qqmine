@@ -45,7 +45,7 @@ function html_header () {
 					<div class='panel-heading'></div>
                     ";
     # =========  广告位 ==========
-    noadvertisement();
+    advertisement();
     echo            "
                     <div class='panel-body table-responsive'>
                       <table class='table table-bordered table-hover'>
@@ -84,7 +84,7 @@ function html_center () {
     $get_id = mysqli_query($handle, 'select max(table_id) from sub_table');
     $table_name = 'data_' . mysqli_fetch_array($get_id)[0];
     # echo $table_name;
-    $sql = 'select gift_time,gift_author,gift_name,gift_number,gift_color,gift_master from ' . $table_name .' where (gift_name <=> "梦幻迷迭香"  or gift_name <=> "梦幻摩天轮"  or gift_name <=> "BUFF梦幻迷迭香"  or gift_name <=> "BUFF梦幻摩天轮") and (gift_master like "% 在 Sog丶龙龙." or gift_master  <=> "Sog丶龙龙.") order by gift_time desc limit 0,510';
+    $sql = 'select gift_time,gift_author,gift_name,gift_number,gift_color,gift_master from ' . $table_name .' where (gift_name <=> "梦幻迷迭香"  or gift_name <=> "梦幻摩天轮"  or gift_name <=> "BUFF梦幻迷迭香"  or gift_name <=> "BUFF梦幻摩天轮") and (gift_master like "% 在 悠小包" or gift_master  <=> "悠小包") order by gift_time desc limit 0,510';
     $query_result = mysqli_query($handle, $sql);
     if (!$query_result) {
         printf("Error: %s\n", mysqli_error($handle));

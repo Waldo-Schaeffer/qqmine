@@ -1,3 +1,4 @@
+<!--此页面用于查看开心矿工爆出的49999钻石以上的礼物-->
 <?php
 
 session_start();
@@ -22,15 +23,18 @@ function db_connect(){
     return $result;
 }
 
+
 # 该函数用于屏蔽指定礼物
 function block_gift ($data) {
-    if ($data == '梦幻迷迭香')
+    if ($data == '皇家招财猫')
         return false;
-    if ($data == '梦幻摩天轮')
+    if ($data == '皇家钞票枪')
         return false;
-	if ($data == 'BUFF梦幻迷迭香')
+	if ($data == '皇家同花顺')
         return false;
-    if ($data == 'BUFF梦幻摩天轮')
+    if ($data == '风铃禾梦')
+        return false;
+	if ($data == '盛宴黑桃A')
         return false;
     # 把要屏蔽的礼物用if筛选掉
     return true;
@@ -45,7 +49,7 @@ function html_header () {
 					<div class='panel-heading'></div>
                     ";
     # =========  广告位 ==========
-    noadvertisement();
+    advertisement();
     echo            "
                     <div class='panel-body table-responsive'>
                       <table class='table table-bordered table-hover'>
@@ -84,7 +88,7 @@ function html_center () {
     $get_id = mysqli_query($handle, 'select max(table_id) from sub_table');
     $table_name = 'data_' . mysqli_fetch_array($get_id)[0];
     # echo $table_name;
-    $sql = 'select gift_time,gift_author,gift_name,gift_number,gift_color,gift_master from ' . $table_name .' where (gift_name <=> "梦幻迷迭香"  or gift_name <=> "梦幻摩天轮"  or gift_name <=> "BUFF梦幻迷迭香"  or gift_name <=> "BUFF梦幻摩天轮") and (gift_master like "% 在 Sog丶龙龙." or gift_master  <=> "Sog丶龙龙.") order by gift_time desc limit 0,510';
+    $sql = 'select gift_time,gift_author,gift_name,gift_number,gift_color,gift_master from ' . $table_name .' where gift_name <=> "皇家招财猫"  or gift_name <=> "皇家钞票枪" or gift_name <=> "皇家同花顺" or gift_name <=> "风铃禾梦" or gift_name <=> "盛宴黑桃A" order by gift_time desc  limit 0,510';
     $query_result = mysqli_query($handle, $sql);
     if (!$query_result) {
         printf("Error: %s\n", mysqli_error($handle));
@@ -104,7 +108,7 @@ function html_center () {
 		if ($data[5] == '与')				# 无直播间时正则抓到的直播间名为 与 ，此时替换为 [主页活动页面]
 			$data[5] = '[主页活动页面]';
         echo "
-                <tr bgcolor='" . color_switch($data[2],$data[4]) . "'>
+                <tr bgcolor='" . color_switch($data[2],$data[4]) . "'  style='color:" . color_font($data[2]) . "'>
                   <td>" . date('Y-m-d H:i:s', substr($data[0], 0,10)+8*60*60) . "</td>
                   <td>$data[1]</td>
                   <td>$data[2]</td>

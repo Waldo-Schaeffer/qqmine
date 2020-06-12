@@ -1,12 +1,10 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # encoding:utf-8
 import requests
 import re
 import time
 import ssl
 import urllib3
-import requests
-
 import json
 import pymysql
 
@@ -16,7 +14,7 @@ conn = None
 cursor = None
 # db_connect 函数用于连接数据库，函数返回一个数据库操作名柄，连接信息在函数中定义
 def db_connect():
-    # conn为全局变量，用于在函数外关闭数据库连接
+    # conn, cursor为全局变量，用于在函数外关闭数据库连接或使用数据库名柄
     global conn
     global cursor
     database_host = '127.0.0.1'         # mysql地址
@@ -125,9 +123,9 @@ def db_operation(gift_data, temp_str):
             #INSERT INTO `sub_table`(`table_id`, `create_time`, `update_time`, `table_name`) VALUES (1,now(),now(),'data_1') 
             try:
                 # 创建分表后需要将新表信息写入sub_table表中,这里要保证表名后缀与table_id同步
-                cursor.execute("insert into sub_table(table_name) values('data_" + str(table_id+1) + "');")
+                cursor.execute("insert into sub_table(table_id, table_name) values(" + str(table_id+1) + ", 'data_" + str(table_id+1) + "');")
                 conn.commit()
-                cursor.execute("insert into data_" + str(table_id+1) + " ( `create_time`, `update_time`, `gift_time`, `gift_author`, `gift_name`, `gift_number`, `gift_color`, `gift_master`) select `create_time`, `update_time`, `gift_time`, `gift_author`, `gift_name`, `gift_number`, `gift_color`, `gift_master` from " + table_name + " where key_id >= (40000 - 500 - 1) order by gift_time")
+                cursor.execute("insert into data_" + str(table_id+1) + " ( `create_time`, `update_time`, `gift_time`, `gift_author`, `gift_name`, `gift_number`, `gift_color`, `gift_master`) select `create_time`, `update_time`, `gift_time`, `gift_author`, `gift_name`, `gift_number`, `gift_color`, `gift_master` from data_" + str(table_id) + " where key_id >= (40000 - 500 - 1) order by gift_time")
                 conn.commit()
             except Exception as e:
                 print(e)
@@ -172,6 +170,9 @@ def main():
         try:
             html = requests.post(url, data=data, verify=False, timeout=8)
         except:
+            with open (log_name, 'a') as log_handle:
+                log_handle.write(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))+',连接超时，请检查网络或目标网站连通性,-\n')
+            time.sleep(10)
             time_totle += 10
             continue
         # print(url)
@@ -205,13 +206,18 @@ def main():
                     gift_data.append(re_data[0][1])             # [2] name
                     gift_data.append(re_data[0][2])             # [3] number
                     gift_data.append(msg_list['ext']['0_c'])      # [4] color
-                    gift_data.append(re_data[0][0])             # [5] master
+                    if ' ' in re_data[0][0] :
+                        gift_data.append(re_data[0][0].split(' ')[2])
+                    else:
+                        gift_data.append(re_data[0][0])             # [5] master
                 except:
                     if ctrl_data != temp_str:
                         # print('data format error - ' + time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())) + ' :' + temp_str)
                         with open (log_name, 'a') as log_handle:
                             log_handle.write(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))+',数据格式错误,'+temp_str+'\n')
                         ctrl_data = temp_str
+                    else:
+                        pass
                 if len(gift_data) == 6:
                     # gift_data = ['158753g0007325','猫熊最欧皇papapa','夺宝战机×1',1,'#FFEF9A','怼怼小哥-52001']
                     # 插入表数据,自动检测分表,传入的gift_data为爬虫抓取到的数据，是一个数组

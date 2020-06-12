@@ -8,8 +8,8 @@ function advertisement () {
 					<img src='../ad.jpg' width=318 height=130 /><br />
 					<p style='font-size:18px;color:red'>
 					广告位招租、公会商务合作联系：<br>
-					QQ：1356565637
-					微信:Yu nLong525626<br>
+					QQ： 1356565637
+					微信: YunLong525626<br>
 					金卡盘进群领取，QQ群：<a href='https://jq.qq.com/?_wv=1027&k=55uF80w' target='_blank'>936266825</a><br>
 				</div>
 				<div class='col-sm-5 col-lg-5 col-xs-5 col-md-5'>
@@ -91,7 +91,7 @@ function color_font ($gift_name_switch) {
 <head>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
-    <title>企鹅挖矿大数据5.2</title>
+    <title>企鹅挖矿大数据定制版-可心户外帅帅主持</title>
 
     <style type="text/css">
     

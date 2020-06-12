@@ -1,4 +1,4 @@
-<!--此页面用于查看开心矿工爆出的臻品-->
+<!--此页面用于查看开心矿工爆出的19999钻石以上的礼物-->
 <?php
 
 session_start();
@@ -23,14 +23,21 @@ function db_connect(){
     return $result;
 }
 
+
 # 该函数用于屏蔽指定礼物
 function block_gift ($data) {
-    if ($data == '神碎片')
+    if ($data == '皇家招财猫')
         return false;
-	if ($data == '暗夜狸猫（30天）')
-        return true;
-	if ($data == '独角兽（30天）')
-        return true;
+    if ($data == '皇家钞票枪')
+        return false;
+	if ($data == '皇家同花顺')
+        return false;
+    if ($data == '风铃禾梦')
+        return false;
+	if ($data == '盛宴黑桃A')
+        return false;
+	if ($data == '私奔到月球')
+        return false;
     # 把要屏蔽的礼物用if筛选掉
     return true;
 }
@@ -83,8 +90,7 @@ function html_center () {
     $get_id = mysqli_query($handle, 'select max(table_id) from sub_table');
     $table_name = 'data_' . mysqli_fetch_array($get_id)[0];
     # echo $table_name;
-    $sql = 'select gift_time,gift_author,gift_name,count(*) as gift_number,gift_color,gift_master from ' . $table_name .' where gift_name  <=> "神碎片" GROUP by gift_author order by gift_number desc';# limit 0,10';
-	#select count(*) as gift_number,gift_author from `data_1` where gift_name <=> "神碎片" GROUP by gift_author order by count(*) DESC 
+    $sql = 'select gift_time,gift_author,gift_name,gift_number,gift_color,gift_master from ' . $table_name .' where gift_name <=> "皇家招财猫"  or gift_name <=> "皇家钞票枪" or gift_name <=> "皇家同花顺"  or gift_name <=> "风铃禾梦" or gift_name <=> "盛宴黑桃A" or gift_name <=> "私奔到月球" order by gift_time desc limit 0,510';
     $query_result = mysqli_query($handle, $sql);
     if (!$query_result) {
         printf("Error: %s\n", mysqli_error($handle));

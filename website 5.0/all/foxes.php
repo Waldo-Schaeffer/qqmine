@@ -1,9 +1,8 @@
-<!--此页面作为示范样本，作为查看指定直播间的梦幻盒子爆出的礼物-->
+<!--此静态页面用于统计梦幻盒子爆出的礼物，显示500条数据且不刷新-->
 <?php
 
 session_start();
 header("Content-type: text/html; charset=utf-8");
-#date_default_timezone_set('PRC'); 
 include_once('header.php');
 
 function db_connect(){
@@ -22,6 +21,8 @@ function db_connect(){
     }
     return $result;
 }
+
+# 该函数用于发布广告，输出html代码，位置在表头之上
 
 # 该函数用于屏蔽指定礼物
 function block_gift ($data) {
@@ -46,7 +47,7 @@ function html_header () {
 					<div class='panel-heading'></div>
                     ";
     # =========  广告位 ==========
-    noadvertisement();
+    advertisement();
     echo            "
                     <div class='panel-body table-responsive'>
                       <table class='table table-bordered table-hover'>
@@ -85,7 +86,7 @@ function html_center () {
     $get_id = mysqli_query($handle, 'select max(table_id) from sub_table');
     $table_name = 'data_' . mysqli_fetch_array($get_id)[0];
     # echo $table_name;
-    $sql = 'select gift_time,gift_author,gift_name,gift_number,gift_color,gift_master from ' . $table_name .' where (gift_name <=> "梦幻迷迭香"  or gift_name <=> "梦幻摩天轮"  or gift_name <=> "BUFF梦幻迷迭香"  or gift_name <=> "BUFF梦幻摩天轮") and (gift_master  <=> "Sog丶龙龙" or gift_master  <=> "户外龙龙钓鱼") order by gift_time desc limit 0,55';
+    $sql = 'select gift_time,gift_author,gift_name,gift_number,gift_color,gift_master from ' . $table_name .' where gift_name <=> "梦幻迷迭香"  or gift_name <=> "梦幻摩天轮"  or gift_name <=> "BUFF梦幻迷迭香"  or gift_name <=> "BUFF梦幻摩天轮" order by gift_time desc limit 0,510';
     $query_result = mysqli_query($handle, $sql);
     if (!$query_result) {
         printf("Error: %s\n", mysqli_error($handle));
@@ -95,7 +96,7 @@ function html_center () {
     # 循环输出表格内容
     $number = 0;
     # flag控制输出条数，不从数据库限制是因为有礼物黑名单
-    $flag = 50;
+    $flag = 500;
     while ($data = mysqli_fetch_array($query_result)) {
         if ( block_gift($data[2]) )
             continue;
@@ -119,5 +120,4 @@ function html_center () {
 html_header();
 html_center();
 html_footer();
-
-include_once('footer.php');
+include_once('footer-seeall.php');
