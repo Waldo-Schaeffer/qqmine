@@ -37,20 +37,20 @@ include_once('header.php');
 		VIP账号还能额外查看月球盘和神碎片盘。SVIP账号还能额外查看高级礼物盘（19999钻以上的礼物）、超级礼物盘（49999钻以上的礼物）
 		</font></p>
         <img src='./ad.jpg' width=318 height=120 /><br />
-		<p style='font-size:18px;color:red'>
+		<p style='font-size:18px;color:blank'>
             <?php
             if(!isset($_SESSION['username'])){
-            echo '<div class="col-4 offset-8">
+            echo '
                 欢迎您，请先<a href="login.php">登录</a>
                 <br>
                 <br>
-            </div>';
+            ';
             }else{
-            echo '<div class="col-6 offset-6">
-                欢迎您，' . $_SESSION['nickname'] . '。<a href="login.php?logout=yes">注销</a>
+            echo '
+                欢迎您，' . $_SESSION['nickname'] . '。您的有效期至' . $_SESSION['used_time'] . '。<a href="login.php?logout=yes">注销</a>
                 <br>
                 <br>
-            </div>';
+            ';
             }
             ?>
         </div>

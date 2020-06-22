@@ -33,6 +33,7 @@
 	| user_id     | int(11)      |
 	| create_time | timestamp    |
 	| end_time    | timestamp    |  #激活时间		在过了激活时间以后就不能激活了。未激活状态used_time值为Null
+	| use_day     | int(11)      |	#可以激活的天数	在激活的时候可以激活多少天，默认14天
 	| used_time   | timestamp    |	#有效期			在有效期过了以后提示：“该用户有效期已过，登录失败”。刷新的时候检测账户有效期是否过期，如果过期则自动注销。
 	| username    | varchar(255) |	#用户名
 	| password    | varchar(255) |	#密码

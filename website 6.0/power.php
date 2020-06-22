@@ -47,7 +47,7 @@ if(!isset($_SESSION['username'])){
 }
 
 # 检测账号是否过期或被禁用，是则注销账号
-if ( $_SESSION['ban_id'] != 0 or strtotime($_SESSION['end_time']) <= date('Y-m-d H:i:s') ){
+if ( $_SESSION['ban_id'] != 0 or $_SESSION['used_time'] <= date('Y-m-d H:i:s') ){
     $_SESSION['username'] = null;
     $_SESSION['nickname'] = null;
     $_SESSION['Channel'] = null;

@@ -54,6 +54,7 @@ def db_connect():
             `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP comment '创建时间',
             `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
             `end_time` TIMESTAMP NOT NULL DEFAULT DATE_ADD(CURRENT_TIMESTAMP,INTERVAL 14 DAY) comment '激活时间',
+			`used_day` INT NOT NULL DEFAULT 14 comment '可以激活的天数',
 			`used_time` TIMESTAMP NULL comment '有效期',
             `username` VARCHAR(255) NOT NULL comment '用户名',
             `password` VARCHAR(255) NOT NULL comment '密码',

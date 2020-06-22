@@ -46,8 +46,16 @@ function login () {
     $result = mysqli_query($handle, $sql);
     if($result && mysqli_num_rows($result)>0){
         $res = mysqli_fetch_array($result);
-        # 判断账号是否过期,end_time早于现在则过期
-        if ( strtotime($res['end_time']) <= date() ){
+
+        if( $res['used_time'] == NULL and $res['end_time'] >= date('Y-m-d H:i:s') ){
+            mysqli_query($handle, "UPDATE user SET used_time= DATE_ADD(CURRENT_TIMESTAMP, INTERVAL " . $res['use_day'] . " DAY) WHERE user_id=".$res['user_id']);
+			$sql = "SELECT * FROM user WHERE username='$username' and BINARY password='$password'";
+			$result = mysqli_query($handle, $sql);
+			$res = mysqli_fetch_array($result);
+        }elseif($res['used_time'] == NULL and $res['end_time'] <= date('Y-m-d H:i:s')){
+            echo "<script>alert('账号已过激活有效期无法激活,请联系管理员！');location.href='login.php';</script>";
+            die();
+        }elseif ( $res['used_time'] <= date('Y-m-d H:i:s') ){
             echo "<script>alert('该账号已过期或被禁用，请联系管理员！');location.href='login.php';</script>";
             die();
         }
@@ -56,15 +64,15 @@ function login () {
             echo "<script>alert('该账号已过期或被禁用，请联系管理员！');location.href='login.php';</script>";
             die();
         }
-
         # 账号信息写入session
         $_SESSION['username'] = $username;
         $_SESSION['Channel'] = $res['Channel'];
 		$_SESSION['Channel-all'] = $res['Channel-all'];
+		$_SESSION['used_time'] = $res['used_time'];
 		$_SESSION['end_time'] = $res['end_time'];
 		$_SESSION['ban_id'] = $res['ban_id'];
 		$_SESSION['nickname'] = $res['nickname'];
-		#如果没有昵称，则显示用户名
+		# 如果没有昵称，则显示用户名
 		if (empty($_SESSION['nickname'])){
 			$_SESSION['nickname'] = $res['username'];
 		;}

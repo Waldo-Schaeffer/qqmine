@@ -97,7 +97,7 @@ function color_font ($gift_name_switch) {
 <head>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
-    <title>企鹅挖矿大数据5.6.4Bata</title>
+    <title>企鹅挖矿大数据5.7Bata</title>
 
     <style type="text/css">
     
