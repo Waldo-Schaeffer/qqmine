@@ -71,4 +71,4 @@ def db_connect():
 db_connect();
 print ('数据库表已创建成功！')
 print ('命令行中插入测试数据示例：')
-print ('''insert into user(username,password,phonenum,nickname,note,Channel,`Channel-all`,ban_id) values('test','test','38380438','test','this is a test acount',2047,2047,0);''')
+print ('''insert into user(username,password,end_time,phonenum,nickname,note,Channel,`Channel-all`,ban_id) values('test','test','2020-07-31 23:59:59','38380438','test','this is a test acount',2047,2047,0);''')
