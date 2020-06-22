@@ -1,0 +1,73 @@
+        +-------------+--------------+ +-------------+--------------+  
+        |  sub_table  分表记录表结构 | |     data   数据表结构      |
+        +-------------+--------------+ +-------------+--------------+
+        | Field       | Type         | | Field       | Type         |
+        +-------------+--------------+ +-------------+--------------+
+        | table_id    | int(11)      | | key_id      | int(11)      |
+        | create_time | timestamp    | | create_time | timestamp    |
+        | update_time | timestamp    | | update_time | timestamp    |
+        | table_name  | varchar(255) | | gift_time   | varchar(255) |
+        +-------------+--------------+ | gift_author | varchar(255) |
+                                       | gift_name   | varchar(255) |
+                                       | gift_number | int(11)      |
+                                       | gift_color  | varchar(255) |
+                                       | gift_master | varchar(255) |
+                                       +-------------+--------------+
+
+需求如下：
+1.加一个导航页面进行页面整合
+2.用户登录和权限管理
+3.升级为HTTPS页面
+
+详细需求说明：
+
+1、导航页面参考mite.ga样式，采用图片+链接的形式跳转。目前的页面有：夺宝盘、迷迭香盘、月球盘、臻品盘、月球盘、头条盘、月球盘、幸运儿盘、高级盘、金卡盘一共10个盘，还有/all的查阅盘10个
+
+2、用户登录页面只有登录和广告页面，不开放注册。用户权限表如下：
+									   
+	+-------------+--------------+ 
+	|     user   数据表结构      |
+	+-------------+--------------+
+	| Field       | Type         |
+	+-------------+--------------+
+	| user_id     | int(11)      |
+	| create_time | timestamp    |
+	| end_time    | timestamp    |  #激活时间		在过了激活时间以后就不能激活了。未激活状态used_time值为Null
+	| used_time   | timestamp    |	#有效期			在有效期过了以后提示：“该用户有效期已过，登录失败”。刷新的时候检测账户有效期是否过期，如果过期则自动注销。
+	| username    | varchar(255) |	#用户名
+	| password    | varchar(255) |	#密码
+	| phonenum    | varchar(255) |	#电话号码		用于备注话号码，可留空
+	| nickname    | varchar(255) |	#昵称
+	| note        | varchar(255) |	#备注
+	| Channel     | int(11)      |	#权限			用于判定50条自动刷新页面的权限
+	| Channel-all | int(11)      |	#查阅权限		用于判定/all的权限（500条不自动刷新）
+	| ban_id      | int(11)      |	#账户是否禁用	用于临时封禁违规账户（比如刷新时间过快），登录的时候提示：“该用户被禁用，登录失败”。刷新的时候检测账户是否被禁用，如果被禁用则自动注销。
+	+-------------+--------------+
+	
+权限设定为二进制，默认为00000000，什么也不能访问
+夺宝盘只要个位为1就能访问，金卡盘只要第10位为1就能访问，例如：
+比如：
+channel是1024，只能看金卡盘
+channel是1025，只能看金卡盘和夺宝盘
+channel是1，只能看夺宝盘
+
+
+over    # login.php check.php power.php index.php default.php
+0 新增create_database.py 用于创建数据库和表，基于python3，执行一次即可
+1 新增login.php 登录表单页面，登录成功则跳转到index.php,否则弹窗提示错误
+2 新增check.php 完成（后续：加入时间校验，使用cookie在指定时间后失效，已完成）
+3 新增power.php 用于查验用户是否登录其权限 完成
+4 修改/新增index.php页面，用于整合所有分页，原有的则改名为default.php。
+5 1 更新login.php,登录状态显示注销 2 更新check.php和power.php，加入超时强制重新登录功能
+
+
+上传服务器注意：
+1 执行 create_database.py 以建user表,该脚本建完后是空表
+2 提交到服务器注意更改php脚本中的数据库服务器ip为127.0.0.1，需要修改的页面：default.php,check.php
+3 自行编辑power.php中的switch权限维护表，为各个页面设置权限
+4 自行编辑index.php中的图片和链接，如需要添加则复制那几行再稍作修改即可，注意原有的index.php已修改为default.php
+5 强制重新登录的时间间隔设置在power.php中，修改最底下变量$timeout即可，单位：秒
+6 在所有需要登录才能查看的页面开头加入一行：include_once('power.php'); （参考default.php,目前已加入的只有default.php)
+7 数据库插入测试数据示例如下：
+	insert into user(username,password,phonenum,nickname,note,Channel,`Channel-all`,ban_id) values('test','test','38380438','test','this is a test acount',2047,2047,0);
+

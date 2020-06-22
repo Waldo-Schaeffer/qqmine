@@ -1,0 +1,24 @@
+weishu=long( val( inputbox() ) )
+
+if Channel mod ( 2 ^ weishu ) >= （ 2 ^ (weishu - 1) ) then
+    returun true
+else
+    return fales
+end if
+
+当位数=1的时候
+
+channel mod ( 2 ^ 1 ) >= 2 ^ 0 ==> channel mod 2 >= 1
+
+输入值为7，二进制位111，得到1，通过。
+输入值为12，二进制位1100，得到0，不通过。
+
+当位数=2的时候
+
+channel mod ( 2 ^ 2 ) >= 2 ^ 1 ==> channel mod 4 >= 2
+
+输入值为7，二进制位111，得到3，通过。
+输入值为12，二进制位1100，得到0，不通过。
+输入值为13，二进制位1101，得到1，不通过。
+输入值为14，二进制位1110，得到2，通过。
+输入值为15，二进制位1111，得到3，通过。

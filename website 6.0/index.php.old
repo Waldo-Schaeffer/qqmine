@@ -1,0 +1,192 @@
+<!--此页面用于处理用户登录-->
+<?php
+
+session_start();
+#echo $_SESSION['Channel'];
+header("Content-type: text/html; charset=utf-8");
+#date_default_timezone_set('PRC'); 
+include_once('header.php');
+?>
+<div class="container" style="text-align:center">
+  <div class="row">
+    <div class="col-12">
+        <br>
+        <h2>企鹅大数据</h2>
+        <br>
+    </div>
+	<div class="col-sm-7 col-lg-7 col-xs-7 col-md-7">
+        <img src='./ad.jpg' width=318 height=130 /><br />
+		<p style='font-size:18px;color:red'>
+		广告位招租，商务合作等联系微信: YunLong525626
+		<br>欢迎各大公会前来洽谈。<br>
+		软件账号进群联系群主领取，一键加QQ群：<a href='https://jq.qq.com/?_wv=1027&k=55uF80w' target='_blank'>936266825</a><br>
+		账号一人一号外借被封不负责<br>
+    </div>
+    <?php
+    if(!isset($_SESSION['username'])){
+    echo '<div class="col-4 offset-8">
+        欢迎您，请先<a href="login.php">登录</a>
+        <br>
+        <br>
+    </div>';
+    }else{
+    echo '<div class="col-4 offset-8">
+        欢迎您，' . $_SESSION['nickname'] . '。<a href="login.php?logout=yes">注销</a>
+        <br>
+        <br>
+    </div>';
+    }
+    ?>
+
+    <div  class="col-md-6 col-xl-3">
+      <div class="card">
+        <div class="card-body"><!-- style="background-image:url('./image/开心矿工.png');" -->
+            <a target="_blank" href="mine.php">
+              <img src="./image/qqmine.jpg" alt="Paris" width="180" height="160">
+			  <!--br />矿工专场-->
+            </a>
+        </div>
+      </div>
+    </div>
+	<div  class="col-md-6 col-xl-3">
+      <div class="card">
+        <div class="card-body">
+            <a target="_blank" href="5000.php">
+              <img src="./image/5000.jpg" alt="Paris" width="180" height="160">
+            </a>
+        </div>
+      </div>
+    </div>
+	<div  class="col-md-6 col-xl-3">
+      <div class="card">
+        <div class="card-body">
+            <a target="_blank" href="headline.php">
+              <img src="./image/headline.jpg" alt="Paris" width="180" height="160">
+            </a>
+        </div>
+      </div>
+    </div>
+	<div  class="col-md-6 col-xl-3">
+      <div class="card">
+        <div class="card-body">
+            <a target="_blank" href="MoonScoop.php">
+              <img src="./image/moon.jpg" alt="Paris" width="180" height="160">
+            </a>
+        </div>
+      </div>
+    </div>
+	<!--line 2-->
+	<div  class="col-md-6 col-xl-3">
+      <div class="card">
+        <div class="card-body">
+            <a target="_blank" href="god.php">
+              <img src="./image/god.jpg" alt="Paris" width="180" height="160">
+            </a>
+        </div>
+      </div>
+    </div>
+	<div  class="col-md-6 col-xl-3">
+      <div class="card">
+        <div class="card-body">
+            <a target="_blank" href="luckydog.php">
+              <img src="./image/luckydog.jpg" alt="Paris" width="180" height="160">
+            </a>
+        </div>
+      </div>
+    </div>
+	<div  class="col-md-6 col-xl-3">
+      <div class="card">
+        <div class="card-body">
+            <a target="_blank" href="richking.php">
+              <img src="./image/richking.jpg" alt="Paris" width="180" height="160">
+            </a>
+        </div>
+      </div>
+    </div>
+	<div  class="col-md-6 col-xl-3">
+      <div class="card">
+        <div class="card-body">
+            <a target="_blank" href="box.php">
+              <img src="./image/box.jpg" alt="Paris" width="180" height="160">
+            </a>
+        </div>
+      </div>
+    </div>
+	<div  class="col-md-6 col-xl-3">
+      <div class="card">
+        <div class="card-body">
+            <a target="_blank" href="./long/box">
+              <img src="./image/long.jpg" alt="Paris" width="180" height="160">
+            </a>
+        </div>
+      </div>
+    </div>
+	<div  class="col-md-6 col-xl-3">
+      <div class="card">
+        <div class="card-body">
+            <a target="_blank" href="http://47.74.56.225/goldcard">
+              <img src="./image/goldcard.jpg" alt="Paris" width="160" height="160">
+            </a>
+        </div>
+      </div>
+    </div>
+	<div  class="col-md-6 col-xl-3">
+      <div class="card">
+        <div class="card-body">
+            <a target="_blank" href="#">
+              <img src="./image/jjqd.jpg" alt="Paris" width="180" height="160">
+            </a>
+        </div>
+      </div>
+    </div>
+	<?php
+	if((!isset($_SESSION['username']) or ($_SESSION['Channel-all'] <= 0))){
+    echo "
+	<div  class='col-md-6 col-xl-3'>
+      <div class='card'>
+        <div class='card-body'>
+            <a target='_blank' href='#'>
+              <img src='./image/jjqd.jpg' alt='Paris' width='180' height='160'>
+            </a>
+        </div>
+      </div>
+    </div>";
+	}else{
+	echo "
+	<div  class='col-md-6 col-xl-3'>
+      <div class='card'>
+        <div class='card-body'>
+            <a target='_blank' href='./all'>
+              <img src='./image/all.jpg' alt='Paris' width='180' height='160'>
+            </a>
+        </div>
+      </div>
+    </div>";
+	}
+	?>
+	<!--div  class="col-md-6 col-xl-3">
+      <div class="card">
+        <div class="card-body">
+            <a target="_blank" href="#">
+              <img src="./image/jjqd.jpg" alt="Paris" width="180" height="160">
+            </a>
+        </div>
+      </div>
+    </div-->
+    <!--div class="col-6">
+      <div class="card"style="background-color: #7ED991;">
+        <div class="card-body">
+            <h5 class="card-title">金卡大数据</h5>
+            <a href="#" class="btn btn-primary" >Go somewhere</a>
+        </div>
+      </div>
+    </div-->
+
+  </div>
+</div>
+
+
+<?php
+
+//include_once('footer.php');
+?>

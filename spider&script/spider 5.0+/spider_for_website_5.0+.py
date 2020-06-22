@@ -207,7 +207,7 @@ def main():
                     gift_data.append(re_data[0][2])             # [3] number
                     gift_data.append(msg_list['ext']['0_c'])      # [4] color
                     if ' ' in re_data[0][0] :
-                        gift_data.append(re_data[0][0].split(' ')[2])
+                        gift_data.append(re_data[0][0].split('在 ')[1])
                     else:
                         gift_data.append(re_data[0][0])             # [5] master
                 except:
