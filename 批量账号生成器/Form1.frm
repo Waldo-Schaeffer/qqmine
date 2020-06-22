@@ -167,7 +167,7 @@ Private Sub Command1_Click()
     For i = CLng(Val(Text3.Text)) To CLng(Val(Text4.Text))
         'insert into user(username,password£¨end_time,use_day,phonenum,nickname,note,Channel,`Channel-all`,ban_id) values('test','test','2020-07-31 23:59:59',14,'38380438','test','this is a test acount',2047,2047,0);
         A = A & "insert into user(username,password,end_time,use_day,phonenum,nickname,note,Channel,`Channel-all`,ban_id) values('"
-        A = A & Lname & Format(i, "00000000") & "','"
+        A = A & Lname & Format(i, "0000000") & "','"
         B = B & "”√ªß√˚£∫ " & Lname & Format(i, "0000000") & "£¨√‹¬Î£∫"
         rempassword = RndNum(7) & RndPass(1)
         A = A & rempassword & "','" & Used_time & "'," & Use_day & ",Null,'','',"
