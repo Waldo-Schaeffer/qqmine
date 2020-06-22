@@ -70,5 +70,5 @@ over    # login.php check.php power.php index.php default.php
 5 强制重新登录的时间间隔设置在power.php中，修改最底下变量$timeout即可，单位：秒
 6 在所有需要登录才能查看的页面开头加入一行：include_once('power.php'); （参考default.php,目前已加入的只有default.php)
 7 数据库插入测试数据示例如下：
-	insert into user(username,password,phonenum,nickname,note,Channel,`Channel-all`,ban_id) values('test','test','38380438','test','this is a test acount',2047,2047,0);
+	insert into user(username,password,end_time,use_day,phonenum,nickname,note,Channel,`Channel-all`,ban_id) values('test','test','2020-07-31 23:59:59',14,'38380438','test','this is a test acount',2047,2047,0);
 

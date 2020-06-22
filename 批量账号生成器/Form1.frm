@@ -4,11 +4,19 @@ Begin VB.Form Form1
    ClientHeight    =   6690
    ClientLeft      =   120
    ClientTop       =   450
-   ClientWidth     =   19395
+   ClientWidth     =   20475
    LinkTopic       =   "Form1"
    ScaleHeight     =   6690
-   ScaleWidth      =   19395
+   ScaleWidth      =   20475
    StartUpPosition =   3  '窗口缺省
+   Begin VB.TextBox Text6 
+      Height          =   270
+      Left            =   16560
+      TabIndex        =   15
+      Text            =   "14"
+      Top             =   6240
+      Width           =   1335
+   End
    Begin VB.TextBox Text5 
       Height          =   270
       Left            =   13200
@@ -60,7 +68,7 @@ Begin VB.Form Form1
    End
    Begin VB.TextBox Text2 
       Height          =   5535
-      Left            =   15840
+      Left            =   16800
       MultiLine       =   -1  'True
       ScrollBars      =   2  'Vertical
       TabIndex        =   2
@@ -76,7 +84,7 @@ Begin VB.Form Form1
       TabIndex        =   1
       Text            =   "Form1.frx":0021
       Top             =   480
-      Width           =   15615
+      Width           =   16455
    End
    Begin VB.CommandButton Command1 
       Caption         =   "生成"
@@ -85,6 +93,14 @@ Begin VB.Form Form1
       TabIndex        =   0
       Top             =   6120
       Width           =   1215
+   End
+   Begin VB.Label Label6 
+      Caption         =   "激活天数："
+      Height          =   255
+      Left            =   15480
+      TabIndex        =   14
+      Top             =   6240
+      Width           =   975
    End
    Begin VB.Label Label5 
       Caption         =   $"Form1.frx":0033
@@ -97,7 +113,7 @@ Begin VB.Form Form1
    Begin VB.Label Label4 
       Caption         =   $"Form1.frx":0048
       Height          =   255
-      Left            =   15840
+      Left            =   16800
       TabIndex        =   12
       Top             =   120
       Width           =   3255
@@ -133,8 +149,8 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Private Sub Command1_Click()
-    Dim A As String, i As Long, Lname As String, B As String, Channel As Long, Used_time As Date
-    Used_time = Text5.Text
+    Dim A As String, i As Long, Lname As String, B As String, Channel As Long, Used_time As Date, Use_day As Long
+    Used_time = Text5.Text: Use_day = CLng(Val(Text6.Text))
     If Option1.Value Then
         Lname = "U"
         Channel = 8 - 1
@@ -149,12 +165,12 @@ Private Sub Command1_Click()
     A = ""
     B = ""
     For i = CLng(Val(Text3.Text)) To CLng(Val(Text4.Text))
-        'insert into user(username,password，end_time,phonenum,nickname,note,Channel,`Channel-all`,ban_id) values('test','test','2020-07-31 23:59:59','38380438','test','this is a test acount',2047,2047,0);
-        A = A & "insert into user(username,password,end_time,phonenum,nickname,note,Channel,`Channel-all`,ban_id) values('"
+        'insert into user(username,password，end_time,use_day,phonenum,nickname,note,Channel,`Channel-all`,ban_id) values('test','test','2020-07-31 23:59:59',14,'38380438','test','this is a test acount',2047,2047,0);
+        A = A & "insert into user(username,password,end_time,use_day,phonenum,nickname,note,Channel,`Channel-all`,ban_id) values('"
         A = A & Lname & Format(i, "00000000") & "','"
         B = B & "用户名： " & Lname & Format(i, "0000000") & "，密码："
         rempassword = RndNum(7) & RndPass(1)
-        A = A & rempassword & "','" & Used_time & "',Null,'','',"
+        A = A & rempassword & "','" & Used_time & "'," & Use_day & ",Null,'','',"
         B = B & rempassword & vbCrLf
         A = A & Channel & "" & ",0,0);" & vbCrLf
     Next

@@ -39,9 +39,9 @@ def db_connect():
 			`used_time` TIMESTAMP NULL comment '有效期',
             `username` VARCHAR(255) NOT NULL comment '用户名',
             `password` VARCHAR(255) NOT NULL comment '密码',
-            `phonenum` VARCHAR(255) comment '手机号',
-            `nickname` VARCHAR(255) NOT NULL comment '昵称',
-            `note` VARCHAR(255) NOT NULL comment '备注',
+            `phonenum` VARCHAR(255) NULL comment '手机号',
+            `nickname` VARCHAR(255) NOT NULL DEFAULT '' comment '昵称',
+            `note` VARCHAR(255) NOT NULL DEFAULT '' comment '备注',
             `Channel` INT NOT NULL comment '权限',
             `Channel-all` INT NOT NULL comment '查阅权限',
             `ban_id` INT NOT NULL comment '是否封禁',
@@ -51,4 +51,4 @@ def db_connect():
 db_connect();
 print ('数据库表已创建成功！')
 print ('命令行中插入测试数据示例：')
-print ('''insert into user(username,password,end_time,phonenum,nickname,note,Channel,`Channel-all`,ban_id) values('test','test','2020-07-31 23:59:59','38380438','test','this is a test acount',2047,2047,0);''')
+print ('''insert into user(username,password,end_time,use_day,phonenum,nickname,note,Channel,`Channel-all`,ban_id) values('test','test','2020-07-31 23:59:59',14,'38380438','test','this is a test acount',2047,2047,0);''')
