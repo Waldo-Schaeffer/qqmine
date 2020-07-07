@@ -5,10 +5,10 @@ function advertisement () {
     echo "
 			<div class='row'>
 				<div class='col-sm-7 col-lg-7 col-xs-7 col-md-7'>
-					<img src='./ad.jpg' width=318 height=130 /><br />
+					<img src='../ad.jpg' width=318 height=130 /><br />
 					<p style='font-size:18px;color:red'>
 					广告位招租、公会商务合作联系：<br>
-					QQ：1356565637
+					QQ： 1356565637
 					微信: YunLong525626<br>
 					点击群号一键加QQ群：<a href='https://jq.qq.com/?_wv=1027&k=55uF80w' target='_blank'>936266825</a><br>
 				</div>
@@ -55,7 +55,7 @@ function color_switch ($gift_name_switch, $default) {
 		case "私奔到月球":
 			return "#fad8e8";
 		case "皇家招财猫":
-			return "#006030";
+			return "#243ed6";
 		case "皇家钞票枪":
 			return "#dfb11e";
 		case "神碎片":
@@ -64,24 +64,16 @@ function color_switch ($gift_name_switch, $default) {
 			return "#ffff00";
 		case "暗夜狸猫（30天）":
 			return "#00403e";	
-		case "风铃禾梦":
-			return "#fa1ee8";
-		case "梦幻热气球":
-			return "#fa1ee8";
-		case "BUFF梦幻热气球":
-			return "#fa1ee8";
+		case "皇家同花顺":
+			return "#ff0000";	
 		case "盛宴黑桃A":
 			return "#000000";	
 		case "梦幻摩天轮":
 			return "#a0b8f8";	
 		case "BUFF梦幻摩天轮":
-			return "#a0b8f8";
-		case "星际战舰":
-			return "#00ff00";	
-		case "BUFF星际战舰":
-			return "#00ff00";			
+			return "#a0b8f8";	
 		default:
-			return $default;
+			return $default;	
 	}
 }
 
@@ -90,12 +82,6 @@ function color_font ($gift_name_switch) {
 	switch ($gift_name_switch) {
 		case "盛宴黑桃A":
 			return "#ffffff";	
-		case "皇家招财猫":
-			return "#cdd932";
-		case "风铃禾梦":
-			return "#000000";
-		case "神碎片":
-			return "#FFFFFF";
 		default:
 			return "#000000";	
 	}
@@ -105,7 +91,7 @@ function color_font ($gift_name_switch) {
 <head>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
-    <title>企鹅挖矿大数据5.8</title>
+    <title>企鹅挖矿大数据定制版-阿哲福利抽奖</title>
 
     <style type="text/css">
     

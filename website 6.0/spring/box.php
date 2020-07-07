@@ -46,6 +46,7 @@ function block_gift ($data) {
 
 # 输出表头
 function html_header () {
+	/*
 	# 连接数据库
     $handle = db_connect();
     if (!$handle) {
@@ -53,12 +54,12 @@ function html_header () {
     }
 	mysqli_set_charset($handle,"utf8");
 	
-	$gift_master = 'gift_master  <=> "龙龙6月26结婚直播" or gift_master  <=> "Sog丶龙龙." or gift_master  <=> "羞羞的轮香球舰" or gift_master  <=> "DS-莫七七"  or gift_master  <=> "悠小包" or gift_master  <=> "龙龙的轮舰球香" ';
-	
+	$gift_master = 'gift_master <=> "春哥法力无边" or gift_master <=> "晞秋Ball" or gift_master <=> "TR情谊-春哥" or gift_master <=> "TR情谊-残夜酱" or gift_master <=> "春哥的意大利炮" or gift_master <=> "春哥的法拉利" or gift_master <=> "春哥的布加迪威龙" or gift_master <=> "企鹅电竞沃哥" or gift_master <=> "TR情谊-殷水春"';
+	#print($gift_master);
     $get_id = mysqli_query($handle, 'select max(table_id) from sub_table');
     $table_name = 'data_' . mysqli_fetch_array($get_id)[0];
     # echo $table_name;
-    $sql = 'SELECT sum(`gift_number`) FROM ' . $table_name .' where (gift_name like "%梦幻迷迭香%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 1) ) ';
+    $sql = 'SELECT count(*) FROM ' . $table_name .' where (gift_name like "%梦幻迷迭香%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 1) ) ';
     $query_result = mysqli_query($handle, $sql);
     if (!$query_result) {
         printf("Error: %s\n", mysqli_error($handle));
@@ -66,66 +67,66 @@ function html_header () {
     }
 	$one_1 = mysqli_fetch_array($query_result)[0];
 	
-	$sql = 'SELECT sum(`gift_number`) FROM ' . $table_name .' where (gift_name like "%梦幻迷迭香%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 3) ) ';
+	$sql = 'SELECT count(*) FROM ' . $table_name .' where (gift_name like "%梦幻迷迭香%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 3) ) ';
     $query_result = mysqli_query($handle, $sql);
 	$one_3 = mysqli_fetch_array($query_result)[0];
 	
-	$sql = 'SELECT sum(`gift_number`) FROM ' . $table_name .' where (gift_name like "%梦幻迷迭香%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 6) ) ';
+	$sql = 'SELECT count(*) FROM ' . $table_name .' where (gift_name like "%梦幻迷迭香%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 6) ) ';
     $query_result = mysqli_query($handle, $sql);
 	$one_6 = mysqli_fetch_array($query_result)[0];
 	
-	$sql = 'SELECT sum(`gift_number`) FROM ' . $table_name .' where (gift_name like "%梦幻迷迭香%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(curdate()) ) ';
+	$sql = 'SELECT count(*) FROM ' . $table_name .' where (gift_name like "%梦幻迷迭香%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(curdate()) ) ';
     $query_result = mysqli_query($handle, $sql);
 	$one_day = mysqli_fetch_array($query_result)[0];
 	
-	$sql = 'SELECT sum(`gift_number`) FROM ' . $table_name .' where (gift_name like "%梦幻摩天轮%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 1) ) ';
+	$sql = 'SELECT count(*) FROM ' . $table_name .' where (gift_name like "%梦幻摩天轮%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 1) ) ';
     $query_result = mysqli_query($handle, $sql);
 	$two_1 = mysqli_fetch_array($query_result)[0];
 	
-	$sql = 'SELECT sum(`gift_number`) FROM ' . $table_name .' where (gift_name like "%梦幻摩天轮%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 3) ) ';
+	$sql = 'SELECT count(*) FROM ' . $table_name .' where (gift_name like "%梦幻摩天轮%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 3) ) ';
     $query_result = mysqli_query($handle, $sql);
 	$two_3 = mysqli_fetch_array($query_result)[0];
 	
-	$sql = 'SELECT sum(`gift_number`) FROM ' . $table_name .' where (gift_name like "%梦幻摩天轮%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 6) ) ';
+	$sql = 'SELECT count(*) FROM ' . $table_name .' where (gift_name like "%梦幻摩天轮%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 6) ) ';
     $query_result = mysqli_query($handle, $sql);
 	$two_6 = mysqli_fetch_array($query_result)[0];
 	
-	$sql = 'SELECT sum(`gift_number`) FROM ' . $table_name .' where (gift_name like "%梦幻摩天轮%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(curdate()) ) ';
+	$sql = 'SELECT count(*) FROM ' . $table_name .' where (gift_name like "%梦幻摩天轮%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(curdate()) ) ';
     $query_result = mysqli_query($handle, $sql);
 	$two_day = mysqli_fetch_array($query_result)[0];
 	
-	$sql = 'SELECT sum(`gift_number`) FROM ' . $table_name .' where (gift_name like "%梦幻热气球%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 1) ) ';
+	$sql = 'SELECT count(*) FROM ' . $table_name .' where (gift_name like "%梦幻热气球%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 1) ) ';
     $query_result = mysqli_query($handle, $sql);
 	$three_1 = mysqli_fetch_array($query_result)[0];
 	
-	$sql = 'SELECT sum(`gift_number`) FROM ' . $table_name .' where (gift_name like "%梦幻热气球%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 3) ) ';
+	$sql = 'SELECT count(*) FROM ' . $table_name .' where (gift_name like "%梦幻热气球%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 3) ) ';
     $query_result = mysqli_query($handle, $sql);
 	$three_3 = mysqli_fetch_array($query_result)[0];
 	
-	$sql = 'SELECT sum(`gift_number`) FROM ' . $table_name .' where (gift_name like "%梦幻热气球%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 6) ) ';
+	$sql = 'SELECT count(*) FROM ' . $table_name .' where (gift_name like "%梦幻热气球%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 6) ) ';
     $query_result = mysqli_query($handle, $sql);
 	$three_6 = mysqli_fetch_array($query_result)[0];
 	
-	$sql = 'SELECT sum(`gift_number`) FROM ' . $table_name .' where (gift_name like "%梦幻热气球%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(curdate()) ) ';
+	$sql = 'SELECT count(*) FROM ' . $table_name .' where (gift_name like "%梦幻热气球%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(curdate()) ) ';
     $query_result = mysqli_query($handle, $sql);
 	$three_day = mysqli_fetch_array($query_result)[0];
 	
-	$sql = 'SELECT sum(`gift_number`) FROM ' . $table_name .' where (gift_name like "%星际战舰%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 1) ) ';
+	$sql = 'SELECT count(*) FROM ' . $table_name .' where (gift_name like "%星际战舰%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 1) ) ';
     $query_result = mysqli_query($handle, $sql);
 	$four_1 = mysqli_fetch_array($query_result)[0];
 	
-	$sql = 'SELECT sum(`gift_number`) FROM ' . $table_name .' where (gift_name like "%星际战舰%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 3) ) ';
+	$sql = 'SELECT count(*) FROM ' . $table_name .' where (gift_name like "%星际战舰%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 3) ) ';
     $query_result = mysqli_query($handle, $sql);
 	$four_3 = mysqli_fetch_array($query_result)[0];
 	
-	$sql = 'SELECT sum(`gift_number`) FROM ' . $table_name .' where (gift_name like "%星际战舰%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 6) ) ';
+	$sql = 'SELECT count(*) FROM ' . $table_name .' where (gift_name like "%星际战舰%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 6) ) ';
     $query_result = mysqli_query($handle, $sql);
 	$four_6 = mysqli_fetch_array($query_result)[0];
 	
-	$sql = 'SELECT sum(`gift_number`) FROM ' . $table_name .' where (gift_name like "%星际战舰%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(curdate()) ) ';
+	$sql = 'SELECT count(*) FROM ' . $table_name .' where (gift_name like "%星际战舰%") and ( ' . $gift_master  . ' ) and `gift_time` / 1000 >= (unix_timestamp(curdate()) ) ';
     $query_result = mysqli_query($handle, $sql);
 	$four_day = mysqli_fetch_array($query_result)[0];
-	
+	*/
     echo"    <div class='container'>
                 <div class='row'>
                   <div class='panel panel-default col-sm-12 col-lg-12 col-xs-12 col-md-12'>
@@ -135,29 +136,9 @@ function html_header () {
     # =========  广告位 ==========
 	#SELECT count(*) FROM `data_2` where (gift_name like "%梦幻迷迭香%") and (gift_master  <=> "户外丶大宝哥" or gift_master  <=> "Sog丶龙龙.") and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 48) ) 
 	#$sql = 'SELECT count(*) FROM ' . $table_name .' where (gift_name like "%梦幻迷迭香%") and (gift_master  <=> "户外丶大宝哥" or gift_master  <=> "Sog丶龙龙.") and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 48) ) ';
-    noadvertisement();
+    advertisement();
     echo            "
                     <div class='panel-body table-responsive' >
-					
-					1小时内本直播间出了：$one_1 个迷迭香&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					3小时内本直播间出了：$one_3 个迷迭香&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					6小时内本直播间出了：$one_6 个迷迭香&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					今天本直播间出了：$one_day 个迷迭香&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<br>
-					1小时内本直播间出了：$two_1 个摩天轮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					3小时内本直播间出了：$two_3 个摩天轮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					6小时内本直播间出了：$two_6 个摩天轮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					今天本直播间出了：$two_day 个摩天轮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<br>
-					1小时内本直播间出了：$three_1 个热气球&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					3小时内本直播间出了：$three_3 个热气球&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					6小时内本直播间出了：$three_6 个热气球&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					今天本直播间出了：$three_day 个热气球&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<br>
-					1小时内本直播间出了：$four_1 个战舰&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					3小时内本直播间出了：$four_3 个战舰&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					6小时内本直播间出了：$four_6 个战舰&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					今天本直播间出了：$four_day 个战舰&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <table class='table table-bordered table-hover'>
                         <thead>
                         <tr>
@@ -194,7 +175,8 @@ function html_center () {
     $get_id = mysqli_query($handle, 'select max(table_id) from sub_table');
     $table_name = 'data_' . mysqli_fetch_array($get_id)[0];
     # echo $table_name;
-	$gift_master = 'gift_master  <=> "龙龙6月26结婚直播" or gift_master  <=> "Sog丶龙龙." or gift_master  <=> "羞羞的轮香球舰" or gift_master  <=> "DS-莫七七"  or gift_master  <=> "悠小包" or gift_master  <=> "龙龙的轮舰球香" ';
+	
+	$gift_master = 'gift_master <=> "春哥法力无边" or gift_master <=> "晞秋Ball" or gift_master <=> "TR情谊-春哥" or gift_master <=> "TR情谊-残夜酱" or gift_master <=> "春哥的意大利炮" or gift_master <=> "春哥的法拉利" or gift_master <=> "春哥的布加迪威龙" or gift_master <=> "企鹅电竞沃哥" or gift_master <=> "TR情谊-殷水春"';
 	
     $sql = 'select gift_time,gift_author,gift_name,gift_number,gift_color,gift_master from ' . $table_name .' where (gift_name <=> "梦幻迷迭香"  or gift_name <=> "梦幻摩天轮"  or gift_name <=> "BUFF梦幻迷迭香"  or gift_name <=> "BUFF梦幻摩天轮" or gift_name <=> "梦幻热气球" or gift_name <=> "BUFF梦幻热气球" or gift_name <=> "星际战舰" or gift_name <=> "BUFF星际战舰") and ( ' . $gift_master . ' ) order by gift_time desc limit 0,55';
     $query_result = mysqli_query($handle, $sql);

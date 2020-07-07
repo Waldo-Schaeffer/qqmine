@@ -51,7 +51,7 @@ function html_header () {
                     ";
     # =========  广告位 ==========
     advertisement();
-    echo            "
+    echo            "欢迎您，" . $_SESSION['nickname'] . "。您的有效期至" . $_SESSION['used_time'] . "。<a href='index.php'>返回主页</a>
                     <div class='panel-body table-responsive'>
                       <table class='table table-bordered table-hover'>
                         <thead>
@@ -106,6 +106,8 @@ function html_center () {
         $number++;
         if ($number > $flag)
             break;
+		if ($data[1] == '*')				# 无直播间时正则抓到的用户名为 * ，此时替换为 [未实名用户]
+			$data[1] = '[未实名用户]';
 		if ($data[5] == '与')				# 无直播间时正则抓到的直播间名为 与 ，此时替换为 [主页活动页面]
 			$data[5] = '[主页活动页面]';
         echo "

@@ -5,10 +5,10 @@ function advertisement () {
     echo "
 			<div class='row'>
 				<div class='col-sm-7 col-lg-7 col-xs-7 col-md-7'>
-					<img src='./ad.jpg' width=318 height=130 /><br />
+					<img src='../ad.jpg' width=318 height=130 /><br />
 					<p style='font-size:18px;color:red'>
 					广告位招租、公会商务合作联系：<br>
-					QQ：1356565637
+					QQ： 1356565637
 					微信: YunLong525626<br>
 					点击群号一键加QQ群：<a href='https://jq.qq.com/?_wv=1027&k=55uF80w' target='_blank'>936266825</a><br>
 				</div>
@@ -43,7 +43,7 @@ function noadvertisement () {
         ";
 }
 
-#该函数用于统一根据礼物显示不同的背景颜色
+#该函数用于统一根据礼物显示不同颜色
 function color_switch ($gift_name_switch, $default) {
 	switch ($gift_name_switch) {
 		case "夺宝战机":
@@ -81,35 +81,21 @@ function color_switch ($gift_name_switch, $default) {
 		case "BUFF星际战舰":
 			return "#00ff00";			
 		default:
-			return $default;
+			return $default;	
 	}
 }
 
-#该函数用于统一根据礼物显示不同的字体颜色
-function color_font ($gift_name_switch) {
-	switch ($gift_name_switch) {
-		case "盛宴黑桃A":
-			return "#ffffff";	
-		case "皇家招财猫":
-			return "#cdd932";
-		case "风铃禾梦":
-			return "#000000";
-		case "神碎片":
-			return "#FFFFFF";
-		default:
-			return "#000000";	
-	}
-}
 ?>
 <html http-equiv="Content-Type" content="text/html; charset=utf-8">
 <head>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
-    <title>企鹅挖矿大数据5.8</title>
+    <title>企鹅挖矿大数据梦幻盒子定制版-悠小包</title>
 
     <style type="text/css">
     
     </style>
+	<!--now version is 5.1.6-->
 </head>
 <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
 <body>

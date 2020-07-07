@@ -35,17 +35,17 @@ switch($current_file){
 	    $power = 9;
         break;
 	case "box.php":
-	    $power = 11;
+	    $power = 10;
         break;
-	case "minecount.php":
-	    $power = 19;
+	case "box-online.php":
+	    $power = 10;
         break;
     default:
         $power = 0;
 }
 session_start();
 if(!isset($_SESSION['username'])){
-    echo "<script>alert('请先登录！如果没有账号，请联系管理员获取！');location.href='login.php';</script>";
+    echo "<script>alert('请先登录！如果没有账号，请联系管理员获取！');location.href='../login.php';</script>";
     die();
 }
 
@@ -55,19 +55,19 @@ if ( $_SESSION['ban_id'] != 0 or $_SESSION['used_time'] <= date('Y-m-d H:i:s') )
     $_SESSION['nickname'] = null;
     $_SESSION['Channel'] = null;
     $_SESSION['Channel-all'] = null;
-    echo "<script>alert('当前账号已过期或被禁用，请联系管理员！');location.href='./login.php?logout=yes';</script>";
+    echo "<script>alert('当前账号已过期或被禁用，请联系管理员！');location.href='../login.php?logout=yes';</script>";
     die();
 }
 
-if((!isset($_SESSION['Channel']))or(! ($_SESSION['Channel'] % pow(2, $power) >= pow(2, $power-1)))){
-    echo "<script>alert('您没有权限查看此页！请联系管理员！');location.href='index.php';</script>";
+if((!isset($_SESSION['Channel-all']))or(! ($_SESSION['Channel'] % pow(2, $power) >= pow(2, $power-1)))){
+    echo "<script>alert('您没有权限查看此页！请联系管理员！');location.href='../index.php';</script>";
     die();
 }
 
 # 强制重新登录的时间间隔，单位：秒 ,12小时即43200秒
 $timeout = 43200;
 if((!isset($_SESSION['Channel']))or(time() - $_SESSION['time'] >= $timeout)){
-    echo "<script>alert('登录会话已过期，请重新登录！');location.href='login.php?logout=yes';</script>";
+    echo "<script>alert('登录会话已过期，请重新登录！');location.href='../login.php?logout=yes';</script>";
     die();
 }
 

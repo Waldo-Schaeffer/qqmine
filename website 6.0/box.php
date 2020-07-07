@@ -34,6 +34,14 @@ function block_gift ($data) {
         return false;
     if ($data == 'BUFF梦幻摩天轮')
         return false;
+	if ($data == '梦幻热气球')
+        return false;
+    if ($data == 'BUFF梦幻热气球')
+        return false;
+	if ($data == '星际战舰')
+        return false;
+    if ($data == 'BUFF星际战舰')
+        return false;
     # 把要屏蔽的礼物用if筛选掉
     return true;
 }
@@ -48,7 +56,7 @@ function html_header () {
                     ";
     # =========  广告位 ==========
     advertisement();
-    echo            "
+    echo            "欢迎您，" . $_SESSION['nickname'] . "。您的有效期至" . $_SESSION['used_time'] . "。<a href='index.php'>返回主页</a>
                     <div class='panel-body table-responsive'>
                       <table class='table table-bordered table-hover'>
                         <thead>
@@ -86,7 +94,7 @@ function html_center () {
     $get_id = mysqli_query($handle, 'select max(table_id) from sub_table');
     $table_name = 'data_' . mysqli_fetch_array($get_id)[0];
     # echo $table_name;
-    $sql = 'select gift_time,gift_author,gift_name,gift_number,gift_color,gift_master from ' . $table_name .' where gift_name <=> "梦幻迷迭香"  or gift_name <=> "梦幻摩天轮"  or gift_name <=> "BUFF梦幻迷迭香"  or gift_name <=> "BUFF梦幻摩天轮" order by gift_time desc limit 50,155';
+    $sql = 'select gift_time,gift_author,gift_name,gift_number,gift_color,gift_master from ' . $table_name .' where gift_name <=> "梦幻迷迭香"  or gift_name <=> "梦幻摩天轮"  or gift_name <=> "BUFF梦幻迷迭香"  or gift_name <=> "BUFF梦幻摩天轮" or gift_name <=> "梦幻热气球" or gift_name <=> "BUFF梦幻热气球" or gift_name <=> "星际战舰" or gift_name <=> "BUFF星际战舰" order by gift_time desc limit 10,105';
     $query_result = mysqli_query($handle, $sql);
     if (!$query_result) {
         printf("Error: %s\n", mysqli_error($handle));
@@ -103,6 +111,8 @@ function html_center () {
         $number++;
         if ($number > $flag)
             break;
+		if ($data[1] == '*')				# 无直播间时正则抓到的用户名为 * ，此时替换为 [未实名用户]
+			$data[1] = '[未实名用户]';
 		if ($data[5] == '与')				# 无直播间时正则抓到的直播间名为 与 ，此时替换为 [主页活动页面]
 			$data[5] = '[主页活动页面]';
         echo "

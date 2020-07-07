@@ -5,11 +5,11 @@ function advertisement () {
     echo "
 			<div class='row'>
 				<div class='col-sm-7 col-lg-7 col-xs-7 col-md-7'>
-					<img src='./ad.jpg' width=318 height=130 /><br />
+					<img src='../ad.jpg' width=318 height=130 /><br />
 					<p style='font-size:18px;color:red'>
 					广告位招租、公会商务合作联系：<br>
 					QQ：1356565637
-					微信: YunLong525626<br>
+					微信:Yu nLong525626<br>
 					点击群号一键加QQ群：<a href='https://jq.qq.com/?_wv=1027&k=55uF80w' target='_blank'>936266825</a><br>
 				</div>
 				<div class='col-sm-5 col-lg-5 col-xs-5 col-md-5'>
@@ -81,7 +81,7 @@ function color_switch ($gift_name_switch, $default) {
 		case "BUFF星际战舰":
 			return "#00ff00";			
 		default:
-			return $default;
+			return $default;	
 	}
 }
 

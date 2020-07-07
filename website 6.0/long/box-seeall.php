@@ -32,6 +32,14 @@ function block_gift ($data) {
         return false;
     if ($data == 'BUFF梦幻摩天轮')
         return false;
+	if ($data == '梦幻热气球')
+        return false;
+    if ($data == 'BUFF梦幻热气球')
+        return false;
+	if ($data == '星际战舰')
+        return false;
+    if ($data == 'BUFF星际战舰')
+        return false;
     # 把要屏蔽的礼物用if筛选掉
     return true;
 }
@@ -84,7 +92,7 @@ function html_center () {
     $get_id = mysqli_query($handle, 'select max(table_id) from sub_table');
     $table_name = 'data_' . mysqli_fetch_array($get_id)[0];
     # echo $table_name;
-    $sql = 'select gift_time,gift_author,gift_name,gift_number,gift_color,gift_master from ' . $table_name .' where (gift_name <=> "梦幻迷迭香"  or gift_name <=> "梦幻摩天轮"  or gift_name <=> "BUFF梦幻迷迭香"  or gift_name <=> "BUFF梦幻摩天轮") and (gift_master like "龙龙6月26结婚直播" or gift_master  <=> "Sog丶龙龙.") order by gift_time desc limit 0,510';
+    $sql = 'select gift_time,gift_author,gift_name,gift_number,gift_color,gift_master from ' . $table_name .' where (gift_name <=> "梦幻迷迭香"  or gift_name <=> "梦幻摩天轮"  or gift_name <=> "BUFF梦幻迷迭香"  or gift_name <=> "BUFF梦幻摩天轮" or gift_name <=> "梦幻热气球" or gift_name <=> "BUFF梦幻热气球" or gift_name <=> "星际战舰" or gift_name <=> "BUFF星际战舰") and ($gift_master  <=> "龙龙6月26结婚直播" or gift_master  <=> "Sog丶龙龙." or gift_master  <=> "羞羞的轮香球舰" or gift_master  <=> "DS-莫七七"  or gift_master  <=> "悠小包" or gift_master  <=> "龙龙的轮舰球香" ; ) order by gift_time desc limit 0,1010';
     $query_result = mysqli_query($handle, $sql);
     if (!$query_result) {
         printf("Error: %s\n", mysqli_error($handle));
@@ -94,7 +102,7 @@ function html_center () {
     # 循环输出表格内容
     $number = 0;
     # flag控制输出条数，不从数据库限制是因为有礼物黑名单
-    $flag = 500;
+    $flag = 1000;
     while ($data = mysqli_fetch_array($query_result)) {
         if ( block_gift($data[2]) )
             continue;

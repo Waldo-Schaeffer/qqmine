@@ -1,4 +1,4 @@
-<!--此页面用于查看开心矿工爆出的私奔到月球-->
+<!--此页面用于查看梦幻盒子爆出的礼物-->
 <?php
 
 include_once('power.php');
@@ -26,7 +26,21 @@ function db_connect(){
 
 # 该函数用于屏蔽指定礼物
 function block_gift ($data) {
-    if ($data == '私奔到月球')
+    if ($data == '梦幻迷迭香')
+        return false;
+    if ($data == '梦幻摩天轮')
+        return false;
+	if ($data == 'BUFF梦幻迷迭香')
+        return false;
+    if ($data == 'BUFF梦幻摩天轮')
+        return false;
+	if ($data == '梦幻热气球')
+        return false;
+    if ($data == 'BUFF梦幻热气球')
+        return false;
+	if ($data == '星际战舰')
+        return false;
+    if ($data == 'BUFF星际战舰')
         return false;
     # 把要屏蔽的礼物用if筛选掉
     return true;
@@ -41,7 +55,7 @@ function html_header () {
 					<div class='panel-heading'></div>
                     ";
     # =========  广告位 ==========
-    advertisement();
+    noadvertisement();
     echo            "欢迎您，" . $_SESSION['nickname'] . "。您的有效期至" . $_SESSION['used_time'] . "。<a href='index.php'>返回主页</a>
                     <div class='panel-body table-responsive'>
                       <table class='table table-bordered table-hover'>
@@ -80,7 +94,7 @@ function html_center () {
     $get_id = mysqli_query($handle, 'select max(table_id) from sub_table');
     $table_name = 'data_' . mysqli_fetch_array($get_id)[0];
     # echo $table_name;
-    $sql = 'select gift_time,gift_author,gift_name,gift_number,gift_color,gift_master from ' . $table_name .' where gift_name <=> "私奔到月球" order by gift_time desc limit 0,55';
+    $sql = 'select gift_time,gift_author,gift_name,gift_number,gift_color,gift_master from ' . $table_name .' where gift_name <=> "梦幻迷迭香"  or gift_name <=> "梦幻摩天轮"  or gift_name <=> "BUFF梦幻迷迭香"  or gift_name <=> "BUFF梦幻摩天轮" or gift_name <=> "梦幻热气球" or gift_name <=> "BUFF梦幻热气球" or gift_name <=> "星际战舰" or gift_name <=> "BUFF星际战舰" order by gift_time desc limit 0,105';
     $query_result = mysqli_query($handle, $sql);
     if (!$query_result) {
         printf("Error: %s\n", mysqli_error($handle));

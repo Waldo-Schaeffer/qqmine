@@ -1,8 +1,6 @@
-<!--此页面用于查看开心矿工爆出的私奔到月球-->
 <?php
 
-include_once('power.php');
-if (!session_id()) session_start();
+session_start();
 header("Content-type: text/html; charset=utf-8");
 #date_default_timezone_set('PRC'); 
 include_once('header.php');
@@ -26,7 +24,21 @@ function db_connect(){
 
 # 该函数用于屏蔽指定礼物
 function block_gift ($data) {
-    if ($data == '私奔到月球')
+    if ($data == '梦幻迷迭香')
+        return false;
+    if ($data == '梦幻摩天轮')
+        return false;
+	if ($data == 'BUFF梦幻迷迭香')
+        return false;
+    if ($data == 'BUFF梦幻摩天轮')
+        return false;
+	if ($data == '梦幻热气球')
+        return false;
+    if ($data == 'BUFF梦幻热气球')
+        return false;
+	if ($data == '星际战舰')
+        return false;
+    if ($data == 'BUFF星际战舰')
         return false;
     # 把要屏蔽的礼物用if筛选掉
     return true;
@@ -34,6 +46,7 @@ function block_gift ($data) {
 
 # 输出表头
 function html_header () {
+	
     echo"    <div class='container'>
                 <div class='row'>
                   <div class='panel panel-default col-sm-12 col-lg-12 col-xs-12 col-md-12'>
@@ -41,9 +54,12 @@ function html_header () {
 					<div class='panel-heading'></div>
                     ";
     # =========  广告位 ==========
+	#SELECT count(*) FROM `data_2` where (gift_name like "%梦幻迷迭香%") and (gift_master  <=> "户外丶大宝哥" or gift_master  <=> "Sog丶龙龙.") and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 48) ) 
+	#$sql = 'SELECT count(*) FROM ' . $table_name .' where (gift_name like "%梦幻迷迭香%") and (gift_master  <=> "户外丶大宝哥" or gift_master  <=> "Sog丶龙龙.") and `gift_time` / 1000 >= (unix_timestamp(now()) - (3600 * 48) ) ';
     advertisement();
-    echo            "欢迎您，" . $_SESSION['nickname'] . "。您的有效期至" . $_SESSION['used_time'] . "。<a href='index.php'>返回主页</a>
-                    <div class='panel-body table-responsive'>
+    echo            "
+                    <div class='panel-body table-responsive' >
+					
                       <table class='table table-bordered table-hover'>
                         <thead>
                         <tr>
@@ -80,7 +96,10 @@ function html_center () {
     $get_id = mysqli_query($handle, 'select max(table_id) from sub_table');
     $table_name = 'data_' . mysqli_fetch_array($get_id)[0];
     # echo $table_name;
-    $sql = 'select gift_time,gift_author,gift_name,gift_number,gift_color,gift_master from ' . $table_name .' where gift_name <=> "私奔到月球" order by gift_time desc limit 0,55';
+	
+	$gift_master = 'gift_master <=> "悠小包"';
+	
+    $sql = 'select gift_time,gift_author,gift_name,gift_number,gift_color,gift_master from ' . $table_name .' where (gift_name <=> "梦幻迷迭香"  or gift_name <=> "梦幻摩天轮"  or gift_name <=> "BUFF梦幻迷迭香"  or gift_name <=> "BUFF梦幻摩天轮" or gift_name <=> "梦幻热气球" or gift_name <=> "BUFF梦幻热气球" or gift_name <=> "星际战舰" or gift_name <=> "BUFF星际战舰") and ( ' . $gift_master . ' ) order by gift_time desc limit 0,55';
     $query_result = mysqli_query($handle, $sql);
     if (!$query_result) {
         printf("Error: %s\n", mysqli_error($handle));
@@ -97,12 +116,10 @@ function html_center () {
         $number++;
         if ($number > $flag)
             break;
-		if ($data[1] == '*')				# 无直播间时正则抓到的用户名为 * ，此时替换为 [未实名用户]
-			$data[1] = '[未实名用户]';
 		if ($data[5] == '与')				# 无直播间时正则抓到的直播间名为 与 ，此时替换为 [主页活动页面]
 			$data[5] = '[主页活动页面]';
         echo "
-                <tr bgcolor='" . color_switch($data[2],$data[4]) . "'  style='color:" . color_font($data[2]) . "'>
+                <tr bgcolor='" . color_switch($data[2],$data[4]) . "'>
                   <td>" . date('Y-m-d H:i:s', substr($data[0], 0,10)+8*60*60) . "</td>
                   <td>$data[1]</td>
                   <td>$data[2]</td>
