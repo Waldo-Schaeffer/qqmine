@@ -1,8 +1,8 @@
 <!--此页面用于查看开心矿工爆出的礼物-->
 <?php
 
-include_once('power.php');
-if (!session_id()) session_start();
+#include_once('power.php');
+#if (!session_id()) session_start();
 header("Content-type: text/html; charset=utf-8");
 #date_default_timezone_set('PRC'); 
 include_once('header.php');
@@ -26,10 +26,24 @@ function db_connect(){
 
 # 该函数用于屏蔽指定礼物
 function block_gift ($data) {
-    if ($data == '私奔到月球')
-        return false;
+    if ($data == '梦幻迷迭香')
+        return true;
+    if ($data == '梦幻摩天轮')
+        return true;
+	if ($data == 'BUFF梦幻迷迭香')
+        return true;
+    if ($data == 'BUFF梦幻摩天轮')
+        return true;
+	if ($data == '梦幻热气球')
+        return true;
+    if ($data == 'BUFF梦幻热气球')
+        return true;
+	if ($data == '星际战舰')
+        return true;
+    if ($data == 'BUFF星际战舰')
+        return true;
     # 把要屏蔽的礼物用if筛选掉
-    return true;
+    return false;
 }
 
 # 输出表头
@@ -42,7 +56,7 @@ function html_header () {
                     ";
     # =========  广告位 ==========
     advertisement();
-    echo            "欢迎您，" . $_SESSION['nickname'] . "。您的有效期至" . $_SESSION['used_time'] . "。<a href='index.php'>返回主页</a>
+    echo            "
                     <div class='panel-body table-responsive'>
                       <table class='table table-bordered table-hover'>
                         <thead>
@@ -84,8 +98,8 @@ function html_center () {
 	$max_id = mysqli_fetch_array($query_result)[0];
     
 	# echo $table_name;
-    $sql = 'select date,nick,name,num from ' . $table_name . ' where (name <=> "私奔到月球") order by date desc limit 0,55';
-	$query_result = mysqli_query($handle, $sql);
+    $sql = 'select date,nick,name,num from ' . $table_name . ' where key_id > ' . ((int)$max_id - 50) . ' order by date desc limit 0,55';
+    $query_result = mysqli_query($handle, $sql);
     if (!$query_result) {
         printf("Error: %s\n", mysqli_error($handle));
         exit();
@@ -120,4 +134,4 @@ html_header();
 html_center();
 html_footer();
 
-include_once('footer.php');
+include_once('footer-gift.php');

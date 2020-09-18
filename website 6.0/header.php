@@ -11,6 +11,9 @@ function advertisement () {
 					QQ：1356565637
 					微信: YunLong525626<br>
 					点击群号一键加QQ群：<a href='https://jq.qq.com/?_wv=1027&k=55uF80w' target='_blank'>936266825</a><br>
+					<a href='https://cdn.egame.qq.com/pgg_act/314134/' target='_blank'>手机QQ开心矿工链接1</a><br /><br />
+					<a href='https://cdn.egame.qq.com/pgg_act/314133/' target='_blank'>手机QQ开心矿工链接2</a><br />
+					哪个能用用哪个
 				</div>
 				<div class='col-sm-5 col-lg-5 col-xs-5 col-md-5'>
 					<p style='font-size:24px;color:#ff0000'><b>请不要使用IE10以下的浏览器访问</b><br></p>
@@ -54,6 +57,10 @@ function color_switch ($gift_name_switch, $default) {
 			return "#6fc675";
 		case "私奔到月球":
 			return "#fad8e8";
+		case "甜心宝蓓":
+			return "#d008e8";
+		case "无间道":
+			return "#000000";
 		case "皇家招财猫":
 			return "#006030";
 		case "皇家钞票枪":
@@ -96,6 +103,8 @@ function color_font ($gift_name_switch) {
 			return "#000000";
 		case "神碎片":
 			return "#FFFFFF";
+		case "无间道":
+			return "#FFFFFF";
 		default:
 			return "#000000";	
 	}
@@ -105,7 +114,7 @@ function color_font ($gift_name_switch) {
 <head>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
-    <title>企鹅挖矿大数据5.8</title>
+    <title>企鹅挖矿大数据6.0Bata</title>
 
     <style type="text/css">
     

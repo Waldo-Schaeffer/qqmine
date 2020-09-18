@@ -26,10 +26,24 @@ function db_connect(){
 
 # 该函数用于屏蔽指定礼物
 function block_gift ($data) {
-    if ($data == '私奔到月球')
-        return false;
+    if ($data == '梦幻迷迭香')
+        return true;
+    if ($data == '梦幻摩天轮')
+        return true;
+	if ($data == 'BUFF梦幻迷迭香')
+        return true;
+    if ($data == 'BUFF梦幻摩天轮')
+        return true;
+	if ($data == '梦幻热气球')
+        return true;
+    if ($data == 'BUFF梦幻热气球')
+        return true;
+	if ($data == '星际战舰')
+        return true;
+    if ($data == 'BUFF星际战舰')
+        return true;
     # 把要屏蔽的礼物用if筛选掉
-    return true;
+    return false;
 }
 
 # 输出表头
@@ -84,8 +98,8 @@ function html_center () {
 	$max_id = mysqli_fetch_array($query_result)[0];
     
 	# echo $table_name;
-    $sql = 'select date,nick,name,num from ' . $table_name . ' where (name <=> "私奔到月球") order by date desc limit 0,55';
-	$query_result = mysqli_query($handle, $sql);
+    $sql = 'select date,nick,name,num from ' . $table_name . ' order by date desc limit 0,550';
+    $query_result = mysqli_query($handle, $sql);
     if (!$query_result) {
         printf("Error: %s\n", mysqli_error($handle));
         exit();
@@ -94,7 +108,7 @@ function html_center () {
     # 循环输出表格内容
     $number = 0;
     # flag控制输出条数，不从数据库限制是因为有礼物黑名单
-    $flag = 50;
+    $flag = 500;
     while ($data = mysqli_fetch_array($query_result)) {
         if ( block_gift($data[2]) )
             continue;
@@ -120,4 +134,4 @@ html_header();
 html_center();
 html_footer();
 
-include_once('footer.php');
+include_once('footer-seeall.php');

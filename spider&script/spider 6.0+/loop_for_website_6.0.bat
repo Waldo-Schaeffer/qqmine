@@ -1,3 +1,3 @@
 :loop
-python .\spider_for_website_5.0+.py
+python .\spidering.py
 goto loop

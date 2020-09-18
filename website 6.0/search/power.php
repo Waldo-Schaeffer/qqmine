@@ -6,45 +6,8 @@ $power = 0;
 # 使用下面这个表维护各个页面的权限
 # Channal的二进制位为1则表示有权限，反之则无。$power表示第几位，默认为0，为0时无权限
 switch($current_file){
-
-    case "mine.php":
-        $power = 1;
-        break;
-	case "gift.php":
-        $power = 1;
-        break;
-    case "5000.php":
-        $power = 2;
-        break;
-	case "headline.php":
-        $power = 3;
-        break;
-	case "MoonScoop.php":
-	    $power = 4;
-        break;
-	case "god.php":
-	    $power = 5;
-        break;
-	case "magic.php":
-	    $power = 6;
-        break;
-	case "midiex.php":
-	    $power = 11;
-        break;
-	case "luckydog.php":
-	    $power = 8;
-        break;
-	case "richking.php":
-	    $power = 9;
-        break;
-	case "box.php":
-	    $power = 10;
-        break;
-	case "box-online.php":
-	    $power = 10;
-        break;
     default:
-        $power = 0;
+        $power = 29;
 }
 session_start();
 if(!isset($_SESSION['username'])){
@@ -62,7 +25,7 @@ if ( $_SESSION['ban_id'] != 0 or $_SESSION['used_time'] <= date('Y-m-d H:i:s') )
     die();
 }
 
-if((!isset($_SESSION['Channel-all']))or(! ($_SESSION['Channel-all'] % pow(2, $power) >= pow(2, $power-1)))){
+if((!isset($_SESSION['Channel']))or(! ($_SESSION['Channel'] % pow(2, $power) >= pow(2, $power-1)))){
     echo "<script>alert('您没有权限查看此页！请联系管理员！');location.href='../index.php';</script>";
     die();
 }

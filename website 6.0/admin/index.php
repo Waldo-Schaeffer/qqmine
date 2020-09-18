@@ -16,7 +16,7 @@ if($_SESSION['Channel-all'] <= 0){
   <div class="row">
     <div class="col-12">
         <br>
-        <h2>企鹅大数据（500条数据查阅）</h2>
+        <h2>企鹅大数据（数据查阅）</h2>
         <br>
     </div>
 	<div  class="col-md-12 col-lg-12 col-xl-6">
@@ -53,7 +53,7 @@ if($_SESSION['Channel-all'] <= 0){
             ';
             }else{
             echo '
-                欢迎您，' . $_SESSION['nickname'] . '。您的有效期至' . $_SESSION['used_time'] . '。<a href="login.php?logout=yes">退出登录</a>
+                欢迎您，' . $_SESSION['nickname'] . '。您的有效期至' . $_SESSION['used_time'] . '。<a href="../login.php?logout=yes">退出登录</a>
                 <br>
                 <br>
             ';
@@ -62,17 +62,24 @@ if($_SESSION['Channel-all'] <= 0){
         </div>
       </div>
     </div>
-	
     <div  class="col-md-6 col-xl-3">
       <div class="card">
-        <div class="card-body"><!-- style="background-image:url('../image/开心矿工.png');" -->
-            <a href="mine.php">
+        <div class="card-body">
+            <a target='_blank' href="./gift">
               <img src="../image/qqmine.jpg" alt="Paris" width="180" height="160">
-			  <!--br />矿工专场-->
             </a>
         </div>
       </div>
     </div>
+	<!--div  class="col-md-6 col-xl-3">
+      <div class="card">
+        <div class="card-body">
+            <a href="#">
+              <img src="../image/jjqd.jpg" alt="Paris" width="180" height="160">
+            </a>
+        </div>
+      </div>
+    </div-->
 	<div  class="col-md-6 col-xl-3">
       <div class="card">
         <div class="card-body">
@@ -110,7 +117,7 @@ if($_SESSION['Channel-all'] <= 0){
         </div>
       </div>
     </div>
-	<div  class="col-md-6 col-xl-3">
+	<!--div  class="col-md-6 col-xl-3">
       <div class="card">
         <div class="card-body">
             <a href="luckydog.php">
@@ -118,7 +125,7 @@ if($_SESSION['Channel-all'] <= 0){
             </a>
         </div>
       </div>
-    </div>
+    </div-->
 	<div  class="col-md-6 col-xl-3">
       <div class="card">
         <div class="card-body">
@@ -128,10 +135,19 @@ if($_SESSION['Channel-all'] <= 0){
         </div>
       </div>
     </div>
-	<div  class="col-md-6 col-xl-3">
+	<!--div  class="col-md-6 col-xl-3">
       <div class="card">
         <div class="card-body">
             <a href="box.php">
+              <img src="../image/box.jpg" alt="Paris" width="180" height="160">
+            </a>
+        </div>
+      </div>
+    </div-->
+	<div  class="col-md-6 col-xl-3">
+      <div class="card">
+        <div class="card-body">
+            <a target='_blank' href="./midiex">
               <img src="../image/box.jpg" alt="Paris" width="180" height="160">
             </a>
         </div>
@@ -140,7 +156,7 @@ if($_SESSION['Channel-all'] <= 0){
 	<div  class="col-md-6 col-xl-3">
       <div class="card">
         <div class="card-body">
-            <a href="../long/box-seeall">
+            <a href="../long/midiex-seeall">
               <img src="../image/long.jpg" alt="Paris" width="180" height="160">
             </a>
         </div>
@@ -149,7 +165,7 @@ if($_SESSION['Channel-all'] <= 0){
 	<div  class="col-md-6 col-xl-3">
       <div class="card">
         <div class="card-body">
-            <a href="http://47.74.56.225/goldcard">
+            <a href="http://47.74.56.225/goldcard/">
               <img src="../image/goldcard.jpg" alt="Paris" width="160" height="160">
             </a>
         </div>
@@ -158,8 +174,17 @@ if($_SESSION['Channel-all'] <= 0){
 	<div  class="col-md-6 col-xl-3">
       <div class="card">
         <div class="card-body">
-            <a href="./box-online">
-              <img src="../image/jjqd.jpg" alt="Paris" width="180" height="160">
+            <a href="./magic">
+              <img src="../image/magic.jpg" alt="Paris" width="180" height="160">
+            </a>
+        </div>
+      </div>
+    </div>
+	<div  class="col-md-6 col-xl-3">
+      <div class="card">
+        <div class="card-body">
+            <a href="../search">
+              <img src="../image/midiex2.jpg" alt="Paris" width="180" height="160">
             </a>
         </div>
       </div>
@@ -169,6 +194,24 @@ if($_SESSION['Channel-all'] <= 0){
         <div class="card-body">
             <a href="../">
               <img src="../image/back.jpg" alt="Paris" width="180" height="160">
+            </a>
+        </div>
+      </div>
+    </div>
+	<div  class="col-md-6 col-xl-3">
+      <div class="card">
+        <div class="card-body">
+            <a href="#">
+              <img src="../image/jjqd.jpg" alt="Paris" width="180" height="160">
+            </a>
+        </div>
+      </div>
+    </div>
+	<div class="col-md-6 col-xl-3">
+      <div class="card">
+        <div class="card-body">
+            <a href="#">
+              <img src="../image/jjqd.jpg" alt="Paris" width="180" height="160">
             </a>
         </div>
       </div>

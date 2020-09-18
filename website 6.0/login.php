@@ -6,7 +6,7 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'yes'){
 	$_SESSION['nickname'] = null;
 	$_SESSION['Channel'] = null;
 	$_SESSION['Channel-all'] = null;
-    echo "<script>alert('您已注销登录！');location.href='./login.php';</script>";
+    echo "<script>alert('您已注销登录！');location.href='./index.php';</script>";
     die();
 }
 if(isset($_SESSION['username'])){

@@ -10,6 +10,9 @@ switch($current_file){
     case "mine.php":
         $power = 1;
         break;
+	case "gift.php":
+        $power = 1;
+        break;
     case "5000.php":
         $power = 2;
         break;
@@ -36,6 +39,9 @@ switch($current_file){
         break;
 	case "box.php":
 	    $power = 11;
+        break;
+	case "midiex.php":
+	    $power = 12;
         break;
 	case "minecount.php":
 	    $power = 19;

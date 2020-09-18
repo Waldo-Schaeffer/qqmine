@@ -12,7 +12,7 @@ function db_connect(){
         $database_host = '127.0.0.1';         # mysql地址
         $database_user = 'root';              # mysql用户名
         $database_pass = 'QQspider2020';              # mysql用户密码
-        $database_name = 'egame_gift';           # 数据库名，不存在会自动创建
+        $database_name = 'covcode';           # 数据库名，不存在会自动创建
         $result = mysqli_connect($database_host, $database_user, $database_pass, $database_name);
     } catch (Exception $e) {
         echo $e->message;
@@ -26,7 +26,7 @@ function db_connect(){
 
 # 该函数用于屏蔽指定礼物
 function block_gift ($data) {
-    if ($data == '私奔到月球')
+    if ($data == '超跑派对卡' || $data == '万能卡')
         return false;
     # 把要屏蔽的礼物用if筛选掉
     return true;
@@ -42,7 +42,7 @@ function html_header () {
                     ";
     # =========  广告位 ==========
     advertisement();
-    echo            "欢迎您，" . $_SESSION['nickname'] . "。您的有效期至" . $_SESSION['used_time'] . "。<a href='index.php'>返回主页</a>
+    echo            "
                     <div class='panel-body table-responsive'>
                       <table class='table table-bordered table-hover'>
                         <thead>
@@ -51,6 +51,7 @@ function html_header () {
                           <th>昵称</th>
                           <th>礼物</th>
                           <th>数量</th>
+                          <th>直播间</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -76,16 +77,11 @@ function html_center () {
     }
 	mysqli_set_charset($handle,"utf8");
 
-    $get_id = mysqli_query($handle, 'select max(table_id) from sub_table');
-    $table_name = 'qqegame_gift_' . mysqli_fetch_array($get_id)[0];
-	#$table_name = 'qqegame_gift';
-	$sql = 'SELECT max(`key_id`) FROM ' . $table_name;
+    $get_id = mysqli_query($handle, 'select max(table_id) from sub_table_magic');
+    $table_name = 'magic_' . mysqli_fetch_array($get_id)[0];
+    # echo $table_name;
+    $sql = 'select gift_time,gift_author,gift_name,gift_number,gift_color,gift_master from ' . $table_name .' order by gift_time desc limit 0,550';
     $query_result = mysqli_query($handle, $sql);
-	$max_id = mysqli_fetch_array($query_result)[0];
-    
-	# echo $table_name;
-    $sql = 'select date,nick,name,num from ' . $table_name . ' where (name <=> "私奔到月球") order by date desc limit 0,55';
-	$query_result = mysqli_query($handle, $sql);
     if (!$query_result) {
         printf("Error: %s\n", mysqli_error($handle));
         exit();
@@ -94,7 +90,7 @@ function html_center () {
     # 循环输出表格内容
     $number = 0;
     # flag控制输出条数，不从数据库限制是因为有礼物黑名单
-    $flag = 50;
+    $flag = 500;
     while ($data = mysqli_fetch_array($query_result)) {
         if ( block_gift($data[2]) )
             continue;
@@ -103,14 +99,15 @@ function html_center () {
             break;
 		if ($data[1] == '*')				# 无直播间时正则抓到的用户名为 * ，此时替换为 [未实名用户]
 			$data[1] = '[未实名用户]';
-		#if ($data[5] == '与')				# 无直播间时正则抓到的直播间名为 与 ，此时替换为 [主页活动页面]
-		#	$data[5] = '[主页活动页面]';
+		if ($data[5] == '与')				# 无直播间时正则抓到的直播间名为 与 ，此时替换为 [主页活动页面]
+			$data[5] = '[主页活动页面]';
         echo "
-                <tr bgcolor='" . color_switch($data[2],'#FFEF9A') . "'  style='color:" . color_font($data[2]) . "'>
-                  <td>$data[0]</td>
+                <tr bgcolor='" . color_switch($data[2],$data[4]) . "'  style='color:" . color_font($data[2]) . "'>
+                  <td>" . date('Y-m-d H:i:s', substr($data[0], 0,10)+8*60*60) . "</td>
                   <td>$data[1]</td>
                   <td>$data[2]</td>
                   <td>$data[3]</td>
+                  <td>$data[5]</td>
                 </tr>
               ";
     }
@@ -120,4 +117,4 @@ html_header();
 html_center();
 html_footer();
 
-include_once('footer.php');
+include_once('footer-seeall.php');
