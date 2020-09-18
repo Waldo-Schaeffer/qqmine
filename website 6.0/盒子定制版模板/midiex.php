@@ -181,7 +181,7 @@ function html_center () {
     $table_name = 'midiex_' . mysqli_fetch_array($get_id)[0];
     # echo $table_name;
 	
-	$gift_master = 'gift_master  <=> "ds-落差"';
+	$gift_master = user_sql ();
 	
     $sql = 'select gift_time,gift_author,gift_name,gift_number,gift_color,gift_master,gift_box,gift_boxtype from ' . $table_name .' where  ( ' . $gift_master . ' ) order by gift_time desc limit 0,55';
     $query_result = mysqli_query($handle, $sql);

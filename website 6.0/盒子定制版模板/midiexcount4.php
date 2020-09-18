@@ -82,7 +82,7 @@ function html_center () {
     $table_name = 'midiex_' . mysqli_fetch_array($get_id)[0];
     # echo $table_name;
 	
-	$gift_master = 'gift_master  <=> "ds-落差"';
+	$gift_master = user_sql ();
 	
     $sql = 'select DATE_FORMAT(FROM_UNIXTIME((`gift_time` / 1000)),"%Y-%m-%d") as gift_time,gift_author,sum(gift_number) as gift_number,gift_number,gift_color,gift_master,gift_box,gift_boxtype from ' . $table_name .' where (gift_name like "%星际战舰%") and ( ' . $gift_master . ' ) group by DATE_FORMAT(FROM_UNIXTIME((`gift_time` / 1000)),"%Y-%m-%d"),gift_author order by gift_time desc limit 0,55';
     $query_result = mysqli_query($handle, $sql);
