@@ -40,6 +40,10 @@ function block_gift ($data) {
         return false;
 	if ($data == '甜心宝蓓')
         return false;
+	if ($data == '梦游仙境')
+        return false;
+	if ($data == '合体')
+        return false;
     # 把要屏蔽的礼物用if筛选掉
     return true;
 }
@@ -96,7 +100,7 @@ function html_center () {
 	$max_id = mysqli_fetch_array($query_result)[0];
     
 	# echo $table_name;
-    $sql = 'select date,nick,name,num from ' . $table_name . ' where (name <=> "皇家招财猫"  or name <=> "皇家钞票枪" or name <=> "皇家同花顺" or name <=> "风铃禾梦" or name <=> "盛宴黑桃A" or name <=> "无间道" or name <=> "甜心宝蓓") order by date desc limit 0,55';
+    $sql = 'select date,nick,name,num from ' . $table_name . ' where (name <=> "皇家招财猫"  or name <=> "皇家钞票枪" or name <=> "皇家同花顺" or name <=> "风铃禾梦" or name <=> "盛宴黑桃A" or name <=> "无间道" or name <=> "甜心宝蓓" or name <=> "梦游仙境" or name <=> "合体") order by date desc limit 0,55';
 	$query_result = mysqli_query($handle, $sql);
     if (!$query_result) {
         printf("Error: %s\n", mysqli_error($handle));

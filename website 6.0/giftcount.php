@@ -55,18 +55,22 @@ function html_header () {
                     ";
     # =========  广告位 ==========
     advertisement();
+	if (isset($_SESSION['nickname'])) {
+		echo "欢迎您，" . $_SESSION['nickname'] . "。您的有效期至" . $_SESSION['used_time'] . "。<a href='index.php'>返回主页</a>";
+	}else{
+		echo "登录后查看更多数据。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href='login.php'>立刻登录</a>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href='index.php'>返回主页</a>";
+	}
     echo            "
                     <div class='panel-body table-responsive'>
-					欢迎您，" . $_SESSION['nickname'] . "。您的有效期至" . $_SESSION['used_time'] . "。<a href='index.php'>返回主页</a><br />
-					每日爆出的礼物统计，数据仅供参考，具体以实际情况为准。（没有办法统计小礼物的情况）
-                      <table class='table table-bordered table-hover'>
+					<table class='table table-bordered table-hover'>
                         <thead>
                         <tr>
                           <th>日期</th>
                           <th>礼物名称</th>
-						  <th>单价</th>
+						  <th>价值</th>
                           <th>数量</th>
-                          <th>价值</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -91,9 +95,31 @@ function html_center () {
         echo 'Did connect to the database faild!!!';
     }
 	mysqli_set_charset($handle,"utf8");
-
-
-for ($x=0; $x<=10; $x++) {
+	
+if((!isset($_SESSION['username'])) or ($_SESSION['Channel-all'] <= 0)){
+	$y=1;
+}else{
+	$y=10;
+}
+for ($x=0; $x<=$y; $x++) {
+	$get_id = mysqli_query($handle, 'select max(table_id) from sub_table');
+    $table_name = 'qqegame_gift_' . mysqli_fetch_array($get_id)[0];
+    # echo $table_name;
+	$cheak_x = $x + 1;
+    $sql = 'SELECT count(*) FROM ' . $table_name .' where (name like "%独角兽%") and  date(`date`) = date_add(date(now()), interval -' . $cheak_x . ' day) ';
+    $query_result = mysqli_query($handle, $sql);
+    if (!$query_result) {
+        printf("Error: %s\n", mysqli_error($handle));
+        exit();
+    }
+	$cheak_num = mysqli_fetch_array($query_result)[0];
+	
+	if($x > 0 and $cheak_num == 0){
+		break;
+	}
+	
+	
+	
     $get_id = mysqli_query($handle, 'select max(table_id) from sub_table');
     $table_name = 'qqegame_gift_' . mysqli_fetch_array($get_id)[0];
     # echo $table_name;
@@ -104,19 +130,18 @@ for ($x=0; $x<=10; $x++) {
         exit();
     }
 	$dujiaoshou = mysqli_fetch_array($query_result)[0];
+	
         echo "
-                <tr bgcolor='#FFD980'>
+                <tr bgcolor='00FF00'>
 							<td>" . date("Y-m-d",strtotime('-' . $x . ' days')) . "</td>
 							<td>独角兽（30天）</td>
-							<td>50000钻石</td>
+							<td>无法评估</td>
 							<td>" . $dujiaoshou . "</td>
-							<td>&nbsp;&nbsp;" . $dujiaoshou * 50000 . "钻石</td>
 						</tr>
               ";
-	$zonge = $dujiaoshou * 50000;
 	
 	$name = '夺宝战机';
-	$gift_value = -5000;
+	$gift_value = 5000;
 	$sql = 'SELECT count(*) FROM ' . $table_name .' where (name like "%' . $name . '%") and  date(`date`) = date_add(date(now()), interval -' . $x . ' day) ';
     $query_result = mysqli_query($handle, $sql);
 	$gift_num = mysqli_fetch_array($query_result)[0];
@@ -128,13 +153,11 @@ for ($x=0; $x<=10; $x++) {
 							<td>" . $name . "</td>
 							<td>" . $gift_value . "钻石</td>
 							<td>" . $gift_num . "</td>
-							<td>" . $gift_num * $gift_value . "钻石</td>
 						</tr>
               ";
-	$zonge = $zonge + ($gift_num * $gift_value);
 	
 	$name = '私奔到月球';
-	$gift_value = -20000;
+	$gift_value = 20000;
 	$sql = 'SELECT count(*) FROM ' . $table_name .' where (name like "%' . $name . '%") and  date(`date`) = date_add(date(now()), interval -' . $x . ' day) ';
     $query_result = mysqli_query($handle, $sql);
 	$gift_num = mysqli_fetch_array($query_result)[0];
@@ -146,13 +169,11 @@ for ($x=0; $x<=10; $x++) {
 							<td>" . $name . "</td>
 							<td>" . $gift_value . "钻石</td>
 							<td>" . $gift_num . "</td>
-							<td>" . $gift_num * $gift_value . "钻石</td>
 						</tr>
               ";
-	$zonge = $zonge + ($gift_num * $gift_value);
 	
 	$name = '头条卡';
-	$gift_value = -3000;
+	$gift_value = 3000;
 	$sql = 'SELECT count(*) FROM ' . $table_name .' where (name like "%' . $name . '%") and  date(`date`) = date_add(date(now()), interval -' . $x . ' day) ';
     $query_result = mysqli_query($handle, $sql);
 	$gift_num = mysqli_fetch_array($query_result)[0];
@@ -164,13 +185,11 @@ for ($x=0; $x<=10; $x++) {
 							<td>" . $name . "</td>
 							<td>" . $gift_value . "钻石</td>
 							<td>" . $gift_num . "</td>
-							<td>" . $gift_num * $gift_value . "钻石</td>
 						</tr>
               ";
-	$zonge = $zonge + ($gift_num * $gift_value);
 	
 	$name = '皇家招财猫';
-	$gift_value = -66666;
+	$gift_value = 66666;
 	$sql = 'SELECT count(*) FROM ' . $table_name .' where (name like "%' . $name . '%") and  date(`date`) = date_add(date(now()), interval -' . $x . ' day) ';
     $query_result = mysqli_query($handle, $sql);
 	$gift_num = mysqli_fetch_array($query_result)[0];
@@ -182,14 +201,12 @@ for ($x=0; $x<=10; $x++) {
 							<td>" . $name . "</td>
 							<td>" . $gift_value . "钻石</td>
 							<td>" . $gift_num . "</td>
-							<td>" . $gift_num * $gift_value . "钻石</td>
 						</tr>
               ";
-	$zonge = $zonge + ($gift_num * $gift_value);
 	
 	
 	$name = '皇家钞票枪';
-	$gift_value = -56666;
+	$gift_value = 56666;
 	$sql = 'SELECT count(*) FROM ' . $table_name .' where (name like "%' . $name . '%") and  date(`date`) = date_add(date(now()), interval -' . $x . ' day) ';
     $query_result = mysqli_query($handle, $sql);
 	$gift_num = mysqli_fetch_array($query_result)[0];
@@ -201,13 +218,11 @@ for ($x=0; $x<=10; $x++) {
 							<td>" . $name . "</td>
 							<td>" . $gift_value . "钻石</td>
 							<td>" . $gift_num . "</td>
-							<td>" . $gift_num * $gift_value . "钻石</td>
 						</tr>
               ";
-	$zonge = $zonge + ($gift_num * $gift_value);
 	
 	$name = '皇家同花顺';
-	$gift_value = -88888;
+	$gift_value = 88888;
 	$sql = 'SELECT count(*) FROM ' . $table_name .' where (name like "%' . $name . '%") and  date(`date`) = date_add(date(now()), interval -' . $x . ' day) ';
     $query_result = mysqli_query($handle, $sql);
 	$gift_num = mysqli_fetch_array($query_result)[0];
@@ -219,14 +234,12 @@ for ($x=0; $x<=10; $x++) {
 							<td>" . $name . "</td>
 							<td>" . $gift_value . "钻石</td>
 							<td>" . $gift_num . "</td>
-							<td>" . $gift_num * $gift_value . "钻石</td>
 						</tr>
               ";
-	$zonge = $zonge + ($gift_num * $gift_value);
 	
 	
 	$name = '风铃禾梦';
-	$gift_value = -131400;
+	$gift_value = 131400;
 	$sql = 'SELECT count(*) FROM ' . $table_name .' where (name like "%' . $name . '%") and  date(`date`) = date_add(date(now()), interval -' . $x . ' day) ';
     $query_result = mysqli_query($handle, $sql);
 	$gift_num = mysqli_fetch_array($query_result)[0];
@@ -238,14 +251,12 @@ for ($x=0; $x<=10; $x++) {
 							<td>" . $name . "</td>
 							<td>" . $gift_value . "钻石</td>
 							<td>" . $gift_num . "</td>
-							<td>" . $gift_num * $gift_value . "钻石</td>
 						</tr>
               ";
-	$zonge = $zonge + ($gift_num * $gift_value);
 	
 	
 	$name = '甜心宝蓓';
-	$gift_value = -77770;
+	$gift_value = 77770;
 	$sql = 'SELECT count(*) FROM ' . $table_name .' where (name like "%' . $name . '%") and  date(`date`) = date_add(date(now()), interval -' . $x . ' day) ';
     $query_result = mysqli_query($handle, $sql);
 	$gift_num = mysqli_fetch_array($query_result)[0];
@@ -257,14 +268,29 @@ for ($x=0; $x<=10; $x++) {
 							<td>" . $name . "</td>
 							<td>" . $gift_value . "钻石</td>
 							<td>" . $gift_num . "</td>
-							<td>" . $gift_num * $gift_value . "钻石</td>
 						</tr>
               ";
-	$zonge = $zonge + ($gift_num * $gift_value);
+	
+	
+	$name = '盛宴黑桃A';
+	$gift_value = 88888;
+	$sql = 'SELECT count(*) FROM ' . $table_name .' where (name like "%' . $name . '%") and  date(`date`) = date_add(date(now()), interval -' . $x . ' day) ';
+    $query_result = mysqli_query($handle, $sql);
+	$gift_num = mysqli_fetch_array($query_result)[0];
+	
+	
+	echo "
+                <tr bgcolor='#FFD980'>
+							<td>" . date("Y-m-d",strtotime('-' . $x . ' days')) . "</td>
+							<td>" . $name . "</td>
+							<td>" . $gift_value . "钻石</td>
+							<td>" . $gift_num . "</td>
+						</tr>
+              ";
 	
 	
 	$name = '无间道';
-	$gift_value = -99990;
+	$gift_value = 99990;
 	$sql = 'SELECT count(*) FROM ' . $table_name .' where (name like "%' . $name . '%") and  date(`date`) = date_add(date(now()), interval -' . $x . ' day) ';
     $query_result = mysqli_query($handle, $sql);
 	$gift_num = mysqli_fetch_array($query_result)[0];
@@ -276,15 +302,13 @@ for ($x=0; $x<=10; $x++) {
 							<td>" . $name . "</td>
 							<td>" . $gift_value . "钻石</td>
 							<td>" . $gift_num . "</td>
-							<td>" . $gift_num * $gift_value . "钻石</td>
 						</tr>
               ";
-	$zonge = $zonge + ($gift_num * $gift_value);
 	
 	
 	
 	$name = '合体';
-	$gift_value = -66660;
+	$gift_value = 66660;
 	$sql = 'SELECT count(*) FROM ' . $table_name .' where (name like "%' . $name . '%") and  date(`date`) = date_add(date(now()), interval -' . $x . ' day) ';
     $query_result = mysqli_query($handle, $sql);
 	$gift_num = mysqli_fetch_array($query_result)[0];
@@ -296,14 +320,12 @@ for ($x=0; $x<=10; $x++) {
 							<td>" . $name . "</td>
 							<td>" . $gift_value . "钻石</td>
 							<td>" . $gift_num . "</td>
-							<td>" . $gift_num * $gift_value . "钻石</td>
 						</tr>
               ";
-	$zonge = $zonge + ($gift_num * $gift_value);
 	
 	
 	$name = '梦游仙境';
-	$gift_value = -77770;
+	$gift_value = 77770;
 	$sql = 'SELECT count(*) FROM ' . $table_name .' where (name like "%' . $name . '%") and  date(`date`) = date_add(date(now()), interval -' . $x . ' day) ';
     $query_result = mysqli_query($handle, $sql);
 	$gift_num = mysqli_fetch_array($query_result)[0];
@@ -315,39 +337,6 @@ for ($x=0; $x<=10; $x++) {
 							<td>" . $name . "</td>
 							<td>" . $gift_value . "钻石</td>
 							<td>" . $gift_num . "</td>
-							<td>" . $gift_num * $gift_value . "钻石</td>
-						</tr>
-              ";
-	$zonge = $zonge + ($gift_num * $gift_value);
-	
-	
-	
-	$name = '盛宴黑桃A';
-	$gift_value = -88888;
-	$sql = 'SELECT count(*) FROM ' . $table_name .' where (name like "%' . $name . '%") and  date(`date`) = date_add(date(now()), interval -' . $x . ' day) ';
-    $query_result = mysqli_query($handle, $sql);
-	$gift_num = mysqli_fetch_array($query_result)[0];
-	
-	
-	echo "
-                <tr bgcolor='#FFD980'>
-							<td>" . date("Y-m-d",strtotime('-' . $x . ' days')) . "</td>
-							<td>" . $name . "</td>
-							<td>" . $gift_value . "钻石</td>
-							<td>" . $gift_num . "</td>
-							<td>" . $gift_num * $gift_value . "钻石</td>
-						</tr>
-              ";
-	$zonge = $zonge + ($gift_num * $gift_value);
-	
-	//echo $zonge
-	echo "
-                <tr bgcolor='#00FF00'>
-							<td>" . date("Y-m-d",strtotime('-' . $x . ' days')) . "</td>
-							<td>合计</td>
-							<td>无</td>
-							<td>无</td>
-							<td>" . $zonge . "钻石</td>
 						</tr>
               ";
 	

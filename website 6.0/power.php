@@ -25,29 +25,32 @@ switch($current_file){
 	case "god.php":
 	    $power = 5;
         break;
-	case "index.php":
-	    $power = 6;
-        break;
-	case "index.php":
+	case "gold2.php":
 	    $power = 7;
         break;
-	case "luckydog.php":
+	case "emerald2.php":
+	    $power = 8;
+        break;
+	case "emerald3.php":
 	    $power = 8;
         break;
 	case "richking.php":
 	    $power = 9;
         break;
 	case "box.php":
-	    $power = 11;
+	    $power = 10;
         break;
 	case "midiex.php":
-	    $power = 12;
+	    $power = 10;
+        break;
+	case "giftcount.php":
+	    $power = 10;
         break;
 	case "minecount.php":
 	    $power = 19;
         break;
     default:
-        $power = 0;
+        $power = 30;
 }
 session_start();
 if(!isset($_SESSION['username'])){

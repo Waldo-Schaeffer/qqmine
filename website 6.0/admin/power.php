@@ -28,6 +28,21 @@ switch($current_file){
 	case "magic.php":
 	    $power = 6;
         break;
+	case "gold.php":
+	    $power = 7;
+        break;
+	case "gold2.php":
+	    $power = 7;
+        break;
+	case "emerald.php":
+	    $power = 8;
+        break;
+	case "emerald2.php":
+	    $power = 8;
+        break;
+	case "emerald3.php":
+	    $power = 8;
+        break;
 	case "midiex.php":
 	    $power = 11;
         break;
@@ -44,7 +59,7 @@ switch($current_file){
 	    $power = 10;
         break;
     default:
-        $power = 0;
+        $power = 30;
 }
 session_start();
 if(!isset($_SESSION['username'])){

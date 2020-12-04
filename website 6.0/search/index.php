@@ -157,7 +157,9 @@ include_once('header.php');
   </div>
 </div>
 
-
+<p center>
+    &copy;jsly
+</p>
 <?php
 
 //include_once('footer.php');

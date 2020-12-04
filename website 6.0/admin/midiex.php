@@ -81,7 +81,7 @@ function html_center () {
     $get_id = mysqli_query($handle, 'select max(table_id) from sub_table_midiex');
     $table_name = 'midiex_' . mysqli_fetch_array($get_id)[0];
     # echo $table_name;
-    $sql = 'select gift_time,gift_author,gift_name,gift_number,gift_color,gift_master,gift_box,gift_boxtype from ' . $table_name .' order by gift_time desc limit 0,550';
+    $sql = 'select gift_time,gift_author,gift_name,gift_number,gift_color,gift_master,gift_box,gift_boxtype from ' . $table_name .' order by gift_time desc limit 0,1050';
     $query_result = mysqli_query($handle, $sql);
     if (!$query_result) {
         printf("Error: %s\n", mysqli_error($handle));
@@ -91,7 +91,7 @@ function html_center () {
     # 循环输出表格内容
     $number = 0;
     # flag控制输出条数，不从数据库限制是因为有礼物黑名单
-    $flag = 500;
+    $flag = 1000;
     while ($data = mysqli_fetch_array($query_result)) {
         if ( block_gift($data[2]) )
             continue;

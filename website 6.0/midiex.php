@@ -42,6 +42,13 @@ function html_header () {
                     ";
     # =========  广告位 ==========
     advertisement();
+	if (isset($_SESSION['nickname'])) {
+		echo "欢迎您，" . $_SESSION['nickname'] . "。您的有效期至" . $_SESSION['used_time'] . "。<a href='index.php'>返回主页</a>";
+	}else{
+		echo "登录后查看更多数据。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href='login.php'>立刻登录</a>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href='index.php'>返回主页</a>";
+	}
     echo            "
                     <div class='panel-body table-responsive'>
                       <table class='table table-bordered table-hover'>
@@ -81,7 +88,10 @@ function html_center () {
     $get_id = mysqli_query($handle, 'select max(table_id) from sub_table_midiex');
     $table_name = 'midiex_' . mysqli_fetch_array($get_id)[0];
     # echo $table_name;
-    $sql = 'select gift_time,gift_author,gift_name,gift_number,gift_color,gift_master,gift_box,gift_boxtype from ' . $table_name .' order by gift_time desc limit 0,55';
+	$sql = 'select gift_time,gift_author,gift_name,gift_number,gift_color,gift_master,gift_box,gift_boxtype from ' . $table_name .' order by gift_time desc limit 0,20';
+	if (isset($_SESSION['nickname'])) {
+		$sql = 'select gift_time,gift_author,gift_name,gift_number,gift_color,gift_master,gift_box,gift_boxtype from ' . $table_name .' order by gift_time desc limit 0,55';
+	}
     $query_result = mysqli_query($handle, $sql);
     if (!$query_result) {
         printf("Error: %s\n", mysqli_error($handle));
@@ -91,7 +101,10 @@ function html_center () {
     # 循环输出表格内容
     $number = 0;
     # flag控制输出条数，不从数据库限制是因为有礼物黑名单
-    $flag = 50;
+    $flag = 20;
+	if (isset($_SESSION['nickname'])) {
+		 $flag = 50;
+	}
     while ($data = mysqli_fetch_array($query_result)) {
         if ( block_gift($data[2]) )
             continue;

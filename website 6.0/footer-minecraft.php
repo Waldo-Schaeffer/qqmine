@@ -1,8 +1,14 @@
-<p center>
+<!--p center>
     &copy;jsly
-</p>
+</p-->
 <script language="JavaScript">
-
+function myrefresh()
+{
+   window.location.reload();
+}
+setTimeout('myrefresh()',300000); //指定4000毫秒刷新一次，1秒等于1000毫秒
+//setInterval('acg.innerHTML=new Date().toLocaleTimeString("chinese",{hour12:false})',1000);
+//以下两个函数从服务器获取时间并以js动态显示在网页中
 function get_obj(time){  
 	return document.getElementById(time);  
 }  

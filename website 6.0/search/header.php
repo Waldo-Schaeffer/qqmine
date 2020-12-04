@@ -38,31 +38,70 @@ function noadvertisement () {
         ";
 }
 
-#该函数用于统一根据礼物显示不同的背景颜色
 function color_switch ($gift_name_switch, $default) {
 	switch ($gift_name_switch) {
 		case "夺宝战机":
 			return "#a0b8f8";
+		case "超级666":
+			return "#a0b8f8";
+		case "高级挖矿券":
+			return "#00c675";
 		case "独角兽（30天）":
+			return "#00c675";
+		case "Q币":
 			return "#00c675";
 		case "头条卡":
 			return "#6fc675";
 		case "私奔到月球":
 			return "#fad8e8";
+		case "2星衰神卡":
+			return "#fad8e8";
+		case "甜心宝蓓":
+			return "#d008e8";
+		case "1星衰神卡":
+			return "#d008e8";
+		case "无间道":
+			return "#000000";
 		case "皇家招财猫":
 			return "#006030";
 		case "皇家钞票枪":
 			return "#dfb11e";
+		case "改名卡":
+			return "#dfb11e";
+		case "黄金大炮":
+			return "#dfb11e";
 		case "神碎片":
-			return "#243edd";	
+			return "#243edd";
 		case "超级火箭":
 			return "#ffff00";
+		case "黄金战机":
+			return "#ffff00";
+		case "财富值":
+			return "#ff0000";
+		case "普通挖矿券":
+			return "#ff0000";
+		case "炫金弹幕卡（3天）":
+			return "#ff0090";
+		case "炫金弹幕卡（7天）":
+			return "#ff0090";
+		case "金币":
+			return "#000000";
+		case "超级鹅蛋":
+			return "#000000";
+		case "守护主播":
+			return "#a0b8f8";
 		case "暗夜狸猫（30天）":
-			return "#00403e";	
+			return "#00403e";
+		case "暗夜狸猫碎片":
+			return "#00403e";
+		case "3星衰神卡":
+			return "#00403e";
+		case "财神卡":
+			return "#fa1ee8";
 		case "风铃禾梦":
 			return "#fa1ee8";
 		case "梦幻热气球":
-			return "#fa1ee8";
+			return "#8a1e78";
 		case "BUFF梦幻热气球":
 			return "#fa1ee8";
 		case "盛宴黑桃A":
@@ -70,13 +109,22 @@ function color_switch ($gift_name_switch, $default) {
 		case "梦幻摩天轮":
 			return "#a0b8f8";	
 		case "BUFF梦幻摩天轮":
-			return "#a0b8f8";
+			return "#0088f8";
+		case "梦幻迷迭香":
+			return "#FFD980";
+		case "BUFF梦幻迷迭香":
+			return "#8F6900";
 		case "星际战舰":
 			return "#00ff00";	
 		case "BUFF星际战舰":
-			return "#00ff00";			
+			return "#008f00";
+		case "1星福神卡":
+			return "#00ff00";
+		case "合体":
+			return "#0000ff";
 		default:
 			return $default;
+			#return "#FFD980";
 	}
 }
 

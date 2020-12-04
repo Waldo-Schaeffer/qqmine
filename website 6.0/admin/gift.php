@@ -98,7 +98,7 @@ function html_center () {
 	$max_id = mysqli_fetch_array($query_result)[0];
     
 	# echo $table_name;
-    $sql = 'select date,nick,name,num from ' . $table_name . ' order by date desc limit 0,550';
+    $sql = 'select date,nick,name,num from ' . $table_name . ' order by date desc limit 0,1050';
     $query_result = mysqli_query($handle, $sql);
     if (!$query_result) {
         printf("Error: %s\n", mysqli_error($handle));
@@ -108,7 +108,7 @@ function html_center () {
     # 循环输出表格内容
     $number = 0;
     # flag控制输出条数，不从数据库限制是因为有礼物黑名单
-    $flag = 500;
+    $flag = 1000;
     while ($data = mysqli_fetch_array($query_result)) {
         if ( block_gift($data[2]) )
             continue;

@@ -26,22 +26,20 @@ if($_SESSION['Channel-all'] <= 0){
 		迷迭香数据私人订制、广告位、等商务合作联系微信: YunLong525626。
 		欢迎各大公会前来洽谈。<br>账号一人一号外借被封不负责。<br>
 		软件账号进群联系群主领取，一键加QQ群：<a href='https://jq.qq.com/?_wv=1027&k=55uF80w' target='_blank'>936266825</a><br>
-		<font color="#0000FF">使用浏览器登录可以使用浏览器自带的保存密码功能保存密码</font><br>
-		<font color="#000000" size="3">想要账号的在龙龙这儿出礼物获得：出货量达到3000元赠送普通账号，出货量达到1万给VIP账号，出货量达到2万以上给SVIP账号。<br>
-		迷迭香数据接受私人订制联系龙龙<br>
-		矿工盘、金卡盘不需要登录就能查看。普通账号可以查看臻品盘（可以计算别人填坑了多少）、头条卡盘（方便你找人收头条）。
-		</font></p>
+		数据查阅是用来查看500-1000条静态数据的，不是实时刷新的，请留意！<br>
+		<font color="#0000FF">使用浏览器登录可以使用浏览器自带的保存密码功能保存密码</font>
+		</p>
         </div>
       </div>
     </div>
     <div  class="col-md-12 col-lg-12 col-xl-6">
       <div class="card">
         <div class="card-body">
-		<p align="left">
+		<!--p align="left">
 		<font color="#000000" size="3">
-		VIP账号还能额外查看月球盘和神碎片盘。SVIP账号还能额外查看高级礼物盘（19999钻以上的礼物）、超级礼物盘（49999钻以上的礼物）
+		&nbsp;
 		</font>
-		</p>
+		</p-->
         <img src='../ad.jpg' width=318 height=120 /><br />
 		<p style='font-size:18px;color:blank'>
             <?php
@@ -66,25 +64,7 @@ if($_SESSION['Channel-all'] <= 0){
       <div class="card">
         <div class="card-body">
             <a target='_blank' href="./gift">
-              <img src="../image/qqmine.jpg" alt="Paris" width="180" height="160">
-            </a>
-        </div>
-      </div>
-    </div>
-	<!--div  class="col-md-6 col-xl-3">
-      <div class="card">
-        <div class="card-body">
-            <a href="#">
-              <img src="../image/jjqd.jpg" alt="Paris" width="180" height="160">
-            </a>
-        </div>
-      </div>
-    </div-->
-	<div  class="col-md-6 col-xl-3">
-      <div class="card">
-        <div class="card-body">
-            <a href="5000.php">
-              <img src="../image/5000.jpg" alt="Paris" width="180" height="160">
+              <img src="../image/gift2.jpg" alt="钻石矿工专场" width="180" height="160">
             </a>
         </div>
       </div>
@@ -92,8 +72,53 @@ if($_SESSION['Channel-all'] <= 0){
 	<div  class="col-md-6 col-xl-3">
       <div class="card">
         <div class="card-body">
-            <a href="headline.php">
-              <img src="../image/headline.jpg" alt="Paris" width="180" height="160">
+            <a target='_blank' href="./5000">
+              <img src="../image/5000.jpg" alt="钻石矿工臻品专场" width="180" height="160">
+            </a>
+        </div>
+      </div>
+    </div>
+	<div  class="col-md-6 col-xl-3">
+      <div class="card">
+        <div class="card-body">
+            <a target='_blank' href="./gold">
+              <img src="../image/gold.jpg" alt="金币矿工专场" width="180" height="160">
+            </a>
+        </div>
+      </div>
+    </div>
+	<div  class="col-md-6 col-xl-3">
+      <div class="card">
+        <div class="card-body">
+            <a target='_blank' href="./gold2">
+              <img src="../image/gold2.jpg" alt="金币矿工高级专场" width="180" height="160">
+            </a>
+        </div>
+      </div>
+    </div>
+	<div  class="col-md-6 col-xl-3">
+      <div class="card">
+        <div class="card-body">
+            <a target='_blank' href="./emerald">
+              <img src="../image/emerald.jpg" alt="财富值矿工专场" width="180" height="160">
+            </a>
+        </div>
+      </div>
+    </div>
+	<div  class="col-md-6 col-xl-3">
+      <div class="card">
+        <div class="card-body">
+            <a target='_blank' href="./emerald2">
+              <img src="../image/emerald2.jpg" alt="财富值矿工高级专场" width="180" height="160">
+            </a>
+        </div>
+      </div>
+    </div>
+	<div  class="col-md-6 col-xl-3">
+      <div class="card">
+        <div class="card-body">
+            <a target='_blank' href="./emerald3">
+              <img src="../image/emerald3.jpg" alt="财富值矿工超级专场" width="180" height="160">
             </a>
         </div>
       </div>
@@ -102,62 +127,25 @@ if($_SESSION['Channel-all'] <= 0){
       <div class="card">
         <div class="card-body">
             <a href="MoonScoop.php">
-              <img src="../image/moon.jpg" alt="Paris" width="180" height="160">
+              <img src="../image/moon.jpg" alt="月球专场" width="180" height="160">
             </a>
         </div>
       </div>
     </div>
-	<!--line 2-->
-	<div  class="col-md-6 col-xl-3">
-      <div class="card">
-        <div class="card-body">
-            <a href="god.php">
-              <img src="../image/god.jpg" alt="Paris" width="180" height="160">
-            </a>
-        </div>
-      </div>
-    </div>
-	<!--div  class="col-md-6 col-xl-3">
-      <div class="card">
-        <div class="card-body">
-            <a href="luckydog.php">
-              <img src="../image/luckydog.jpg" alt="Paris" width="180" height="160">
-            </a>
-        </div>
-      </div>
-    </div-->
 	<div  class="col-md-6 col-xl-3">
       <div class="card">
         <div class="card-body">
             <a href="richking.php">
-              <img src="../image/richking.jpg" alt="Paris" width="180" height="160">
+              <img src="../image/richking.jpg" alt="超级礼物专场" width="180" height="160">
             </a>
         </div>
       </div>
     </div>
-	<!--div  class="col-md-6 col-xl-3">
-      <div class="card">
-        <div class="card-body">
-            <a href="box.php">
-              <img src="../image/box.jpg" alt="Paris" width="180" height="160">
-            </a>
-        </div>
-      </div>
-    </div-->
 	<div  class="col-md-6 col-xl-3">
       <div class="card">
         <div class="card-body">
             <a target='_blank' href="./midiex">
-              <img src="../image/box.jpg" alt="Paris" width="180" height="160">
-            </a>
-        </div>
-      </div>
-    </div>
-	<div  class="col-md-6 col-xl-3">
-      <div class="card">
-        <div class="card-body">
-            <a href="../long/midiex-seeall">
-              <img src="../image/long.jpg" alt="Paris" width="180" height="160">
+              <img src="../image/box.jpg" alt="梦幻盒子专场" width="180" height="160">
             </a>
         </div>
       </div>
@@ -166,7 +154,7 @@ if($_SESSION['Channel-all'] <= 0){
       <div class="card">
         <div class="card-body">
             <a href="http://47.74.56.225/goldcard/">
-              <img src="../image/goldcard.jpg" alt="Paris" width="160" height="160">
+              <img src="../image/goldcard.jpg" alt="金卡传说" width="160" height="160">
             </a>
         </div>
       </div>
@@ -175,43 +163,7 @@ if($_SESSION['Channel-all'] <= 0){
       <div class="card">
         <div class="card-body">
             <a href="./magic">
-              <img src="../image/magic.jpg" alt="Paris" width="180" height="160">
-            </a>
-        </div>
-      </div>
-    </div>
-	<div  class="col-md-6 col-xl-3">
-      <div class="card">
-        <div class="card-body">
-            <a href="../search">
-              <img src="../image/midiex2.jpg" alt="Paris" width="180" height="160">
-            </a>
-        </div>
-      </div>
-    </div>
-	<div  class="col-md-6 col-xl-3">
-      <div class="card">
-        <div class="card-body">
-            <a href="../">
-              <img src="../image/back.jpg" alt="Paris" width="180" height="160">
-            </a>
-        </div>
-      </div>
-    </div>
-	<div  class="col-md-6 col-xl-3">
-      <div class="card">
-        <div class="card-body">
-            <a href="#">
-              <img src="../image/jjqd.jpg" alt="Paris" width="180" height="160">
-            </a>
-        </div>
-      </div>
-    </div>
-	<div class="col-md-6 col-xl-3">
-      <div class="card">
-        <div class="card-body">
-            <a href="#">
-              <img src="../image/jjqd.jpg" alt="Paris" width="180" height="160">
+              <img src="../image/magic.jpg" alt="魔力包专场" width="180" height="160">
             </a>
         </div>
       </div>
@@ -220,24 +172,54 @@ if($_SESSION['Channel-all'] <= 0){
       <div class="card">
         <div class="card-body">
             <a href="#">
-              <img src="../image/jjqd.jpg" alt="Paris" width="180" height="160">
+              <img src="../image/jjqd.jpg" alt="敬请期待" width="180" height="160">
+            </a>
+        </div>
+      </div>
+    </div>
+	<div class="col-md-6 col-xl-3">
+      <div class="card">
+        <div class="card-body">
+            <a href="#">
+              <img src="../image/jjqd.jpg" alt="敬请期待" width="180" height="160">
+            </a>
+        </div>
+      </div>
+    </div>
+	<div class="col-md-6 col-xl-3">
+      <div class="card">
+        <div class="card-body">
+            <a href="#">
+              <img src="../image/jjqd.jpg" alt="敬请期待" width="180" height="160">
             </a>
         </div>
       </div>
     </div-->
-    <!--div class="col-6">
-      <div class="card"style="background-color: #7ED991;">
+	<div  class="col-md-6 col-xl-3">
+      <div class="card">
         <div class="card-body">
-            <h5 class="card-title">金卡大数据</h5>
-            <a href="#" class="btn btn-primary" >Go somewhere</a>
+            <a href="../search">
+              <img src="../image/midiex2.jpg" alt="梦幻盒子数据查阅" width="180" height="160">
+            </a>
         </div>
       </div>
-    </div-->
-
+    </div>
+	<div  class="col-md-6 col-xl-3">
+      <div class="card">
+        <div class="card-body">
+            <a href="../">
+              <img src="../image/back.jpg" alt="返回首页" width="180" height="160">
+            </a>
+        </div>
+      </div>
+    </div>
+	
   </div>
 </div>
 
-
+<p center>
+    &copy;jsly
+</p>
 <?php
 
 //include_once('footer.php');

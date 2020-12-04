@@ -2,7 +2,7 @@
 <?php
 
 #include_once('power.php');
-#if (!session_id()) session_start();
+if (!session_id()) session_start();
 header("Content-type: text/html; charset=utf-8");
 #date_default_timezone_set('PRC'); 
 include_once('header.php');
@@ -56,6 +56,13 @@ function html_header () {
                     ";
     # =========  广告位 ==========
     advertisement();
+	if (isset($_SESSION['nickname'])) {
+		echo "欢迎您，" . $_SESSION['nickname'] . "。您的有效期至" . $_SESSION['used_time'] . "。<a href='index.php'>返回主页</a>";
+	}else{
+		echo "登录后查看更多数据。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href='login.php'>立刻登录</a>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href='index.php'>返回主页</a>";
+	}
     echo            "
                     <div class='panel-body table-responsive'>
                       <table class='table table-bordered table-hover'>
@@ -98,7 +105,10 @@ function html_center () {
 	$max_id = mysqli_fetch_array($query_result)[0];
     
 	# echo $table_name;
-    $sql = 'select date,nick,name,num from ' . $table_name . ' order by date desc limit 0,50';
+    $sql = 'select date,nick,name,num from ' . $table_name . ' order by date desc limit 0,20';
+	if (isset($_SESSION['nickname'])) {
+		$sql = 'select date,nick,name,num from ' . $table_name . ' order by date desc limit 0,55';
+	}
     $query_result = mysqli_query($handle, $sql);
     if (!$query_result) {
         printf("Error: %s\n", mysqli_error($handle));
@@ -108,7 +118,10 @@ function html_center () {
     # 循环输出表格内容
     $number = 0;
     # flag控制输出条数，不从数据库限制是因为有礼物黑名单
-    $flag = 50;
+    $flag = 20;
+	if (isset($_SESSION['nickname'])) {
+		 $flag = 50;
+	}
     while ($data = mysqli_fetch_array($query_result)) {
         if ( block_gift($data[2]) )
             continue;

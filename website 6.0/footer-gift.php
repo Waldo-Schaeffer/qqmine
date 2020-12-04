@@ -6,7 +6,7 @@ function myrefresh()
 {
    window.location.reload();
 }
-setTimeout('myrefresh()',4000); //指定4000毫秒刷新一次，1秒等于1000毫秒
+setTimeout('myrefresh()',40000); //指定40000毫秒刷新一次，1秒等于1000毫秒
 //setInterval('acg.innerHTML=new Date().toLocaleTimeString("chinese",{hour12:false})',1000);
 //以下两个函数从服务器获取时间并以js动态显示在网页中
 function get_obj(time){  

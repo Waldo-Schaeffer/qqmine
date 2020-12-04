@@ -35,7 +35,7 @@ function login () {
 
     # 过滤字符防止sql注入,只允许数字，字母和 - 出现
     if ( preg_match('/[^a-zA-Z0-9-]/', $_POST['username']) or preg_match('/[^a-zA-Z0-9-]/', $_POST['password'])){
-        echo "<script>alert('用户名不存在或密码错误！');location.href='login.php';</script>";
+        echo "<script>alert('账号被锁定了或者用户名密码错误！如果你密码输错次数过多，可以15分钟后再次尝试登录！');location.href='login.php';</script>";
         die();
     }
     $username=substr($_POST['username'], 0, 20);     # 限制最大长度为20
@@ -60,6 +60,10 @@ function login () {
             die();
         }
         # 判断账号是否被禁用,不为0则被禁用
+		if ( $res['ban_id'] == -1 ){
+            echo "<script>alert('您的密码输入错误次数已达到上限，密码重置链接已通过短信发送至您的手机，请注意查收！');location.href='login.php';</script>";
+            die();
+        }
         if ( $res['ban_id'] != 0 ){
             echo "<script>alert('该账号已过期或被禁用，请联系管理员！');location.href='login.php';</script>";
             die();
@@ -80,7 +84,7 @@ function login () {
         echo "<script>location.href='index.php';</script>";
     }
     else {
-        echo "<script>alert('用户名不存在或密码错误！');location.href='login.php';</script>";
+        echo "<script>alert('账号被锁定或者用户名密码错误！如果你密码输错次数过多，可以15分钟后再次尝试登录！');location.href='login.php';</script>";
         // echo $password;
     }
 }
