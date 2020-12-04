@@ -200,7 +200,9 @@ def main():
                     # print(msg)
                     temp_str = msg_list['content']# .encode('UTF-8')
                     # print temp_str
-                    r = r'在 +(.*?) ?的直播间 赠送 ([0-9]+)个 (.*?) 变幻出 (.*?)[x,×]([0-9]+)'
+                    #r = r'在 +(.*?) ?的直播间 赠送 ([0-9]+)个 (.*?) 变幻出 (.*?)[x,×]([0-9]+)'
+                    r = r'在 +(.*?) ?的直播间 赠送 ([0-9]+)个 (.*?) .*?出 (.*?)[x,×]([0-9]+)'
+                    #r = r'[在,参与] {0,1}(.*?)[ ,的]*直播间.*?出 (.*?)[ ]*[x,×]([0-9]+)'
                     re_data = re.findall(r,temp_str)
                     gift_data.append(msg_list['tm'])                # [0] time
                     gift_data.append(msg_list['ext']['0_t'])        # [1] author

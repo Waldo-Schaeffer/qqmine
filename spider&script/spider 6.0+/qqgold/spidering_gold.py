@@ -35,7 +35,7 @@ def db_connect():
     cursor.execute("create database if not exists " + database_name + ";")
     cursor.execute("use " + database_name + ";")
     # 创建数据库表：
-    sql_sub_table = """CREATE TABLE IF NOT EXISTS `sub_table` (
+    sql_sub_table = """CREATE TABLE IF NOT EXISTS `sub_table_gold` (
             `table_id` INT NOT NULL AUTO_INCREMENT,
             `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP comment '创建时间',
             `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
@@ -43,7 +43,7 @@ def db_connect():
             primary key(table_id)
             )ENGINE=InnoDB DEFAULT CHARSET=utf8;"""
             
-    sql_data_table = """CREATE TABLE IF NOT EXISTS `qqegame_gift_1` (
+    sql_data_table = """CREATE TABLE IF NOT EXISTS `qqegame_gift_gold_1` (
             `key_id` INT NOT NULL AUTO_INCREMENT,
             `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP comment '创建时间',
             `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
@@ -58,8 +58,8 @@ def db_connect():
     cursor.execute(sql_data_table)
     
     # 初始化 sub_table 表数据,表为空才插入
-    sql_test = "select * from sub_table"
-    sql_init_sub_table = "insert into sub_table(table_name) values('qqegame_gift_1');"
+    sql_test = "select * from sub_table_gold"
+    sql_init_sub_table = "insert into sub_table_gold(table_name) values('qqegame_gift_gold_1');"
     cursor.execute(sql_test)
     if not cursor.fetchall():
         cursor.execute(sql_init_sub_table)
@@ -75,9 +75,9 @@ def db_operation(qqegame_gift, temp_str):
     except:
         db_connect()
     # 获取最新的数据表名，保证表名后缀与table_id同步
-    cursor.execute('select max(table_id) from sub_table;')
+    cursor.execute('select max(table_id) from sub_table_gold;')
     table_id = cursor.fetchall()[0][0]     # sub_table表中的table_id
-    table_name = 'qqegame_gift_' + str(table_id)
+    table_name = 'qqegame_gift_gold_' + str(table_id)
 
     # 插入数据前先查重
     cursor.execute("select max(date) from "+table_name+";" )
@@ -114,7 +114,7 @@ def db_operation(qqegame_gift, temp_str):
             
         # 如果表中数据达到4万，则创建分表
         if key_id > 20000 :
-            sql_data_table = """CREATE TABLE IF NOT EXISTS `qqegame_gift_""" + str(table_id+1) + """` (
+            sql_data_table = """CREATE TABLE IF NOT EXISTS `qqegame_gift_gold_""" + str(table_id+1) + """` (
                     `key_id` INT NOT NULL AUTO_INCREMENT,
                     `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP comment '创建时间',
                     `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
@@ -128,9 +128,9 @@ def db_operation(qqegame_gift, temp_str):
             cursor.execute(sql_data_table)
             try:
                 # 创建分表后需要将新表信息写入sub_table表中,这里要保证表名后缀与table_id同步
-                cursor.execute("insert into sub_table(table_id, table_name) values(" + str(table_id+1) + ", 'qqegame_gift_" + str(table_id+1) + "');")
+                cursor.execute("insert into sub_table_gold(table_id, table_name) values(" + str(table_id+1) + ", 'qqegame_gift_gold_" + str(table_id+1) + "');")
                 conn.commit()
-                cursor.execute("insert into qqegame_gift_" + str(table_id+1) + " ( `create_time`, `update_time`, `name`, `num`, `nick`, `date`, `source`) select `create_time`, `update_time`, `name`, `num`, `nick`, `date`, `source` from qqegame_gift_" + str(table_id) + " where key_id >= (20000 - 500 - 1) order by date")
+                cursor.execute("insert into qqegame_gift_gold_" + str(table_id+1) + " ( `create_time`, `update_time`, `name`, `num`, `nick`, `date`, `source`) select `create_time`, `update_time`, `name`, `num`, `nick`, `date`, `source` from qqegame_gift_" + str(table_id) + " where key_id >= (20000 - 500 - 1) order by date")
                 conn.commit()
             except Exception as e:
                 print(e)
@@ -184,12 +184,12 @@ def main():
             url = 'https://share.egame.qq.com/cgi-bin/pgg_async_fcgi?_=' + str(nowTime + 3000)
             if number_first == 1 :
                 data = {
-                    'param':'{"0":{"param":{"type":0,"anchor_id":0,"name":"","ts":' + str(nowTime / 1000) + ',"page_num":1,"page_size":50},"module":"pgg_loot_boxes_mt_svr","method":"get_loot_prize_detail"}}'
+                    'param':'{"0":{"param":{"type":2,"anchor_id":0,"name":"","ts":' + str(nowTime / 1000) + ',"page_num":1,"page_size":50},"module":"pgg_loot_boxes_mt_svr","method":"get_loot_prize_detail"}}'
                 }
                 number_first = 0
             else:
                 data = {
-                    'param':'{"0":{"param":{"type":0,"anchor_id":0,"name":"","ts":' + str(nowTime / 1000) + ',"page_num":1,"page_size":15},"module":"pgg_loot_boxes_mt_svr","method":"get_loot_prize_detail"}}'
+                    'param':'{"0":{"param":{"type":2,"anchor_id":0,"name":"","ts":' + str(nowTime / 1000) + ',"page_num":1,"page_size":15},"module":"pgg_loot_boxes_mt_svr","method":"get_loot_prize_detail"}}'
                 }
                 time.sleep(1)
                 break_time += 1
